@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Proces produkcji maszyn AS‑LAB - od projektu CAD po wdrożenie';
+const description = 'Cały proces tworzenia maszyn AS‑LAB realizujemy samodzielnie - projekt CAD, konstrukcja, produkcja warsztatowa, montaż, wdrożenie u klienta. Polski producent z Łazów k. Bochni.';
+
+const breadcrumbs = [{ name: 'Proces produkcji', href: '/proces-produkcji/' }];
+
+const stages = [
+  {
+    n: '01',
+    name: 'Projekt CAD',
+    duration: '3-10 dni',
+    desc: 'Każdy projekt zaczynamy od dokumentacji konstrukcyjnej w CAD. Ustalamy z klientem typ materiału, frakcję wyjściową, moc napędu i wymagania normatywne. Powstaje pełna dokumentacja techniczna - 3D, rysunki części, kalkulacje obciążeń.',
+    bullets: ['Konsultacja techniczna z klientem', 'Modelowanie 3D w SolidWorks i AutoCAD', 'Dokumentacja warsztatowa', 'Kalkulacja kosztów materiałowych'],
+  },
+  {
+    n: '02',
+    name: 'Konstrukcja',
+    duration: '1-3 tyg.',
+    desc: 'Zaopatrzenie w materiały (stale konstrukcyjne, hartowane stopy, części znormalizowane). Cięcie, gięcie, spawanie ram i obudów. Obróbka skrawaniem części odpowiedzialnych - tokarka, frezarka, wytaczarka. Hartowanie i obróbka cieplna.',
+    bullets: ['Stal nierdzewna i konstrukcyjna', 'Spawanie metodami MIG/MAG/TIG', 'Obróbka skrawaniem CNC', 'Hartowanie i obróbka cieplna'],
+  },
+  {
+    n: '03',
+    name: 'Produkcja i montaż',
+    duration: '2-5 tyg.',
+    desc: 'Montaż mechaniczny w warsztacie w Łazach. Dobór i podłączenie napędu (silnik, przekładnia, falownik). Montaż systemu sterowania i bezpieczeństwa. Testy obciążeniowe i pomiary kontrolne. Malowanie proszkowe lub farbą strukturalną.',
+    bullets: ['Montaż mechaniczny i elektryczny', 'Falowniki, sterowniki PLC', 'Testy obciążeniowe', 'Malowanie proszkowe / strukturalne'],
+  },
+  {
+    n: '04',
+    name: 'Wdrożenie u klienta',
+    duration: '1-3 dni',
+    desc: 'Transport, ustawienie i podłączenie u klienta. Pierwsze uruchomienie z naszym technikiem na miejscu. Szkolenie operatorów z obsługi i konserwacji. Przekazanie pełnej dokumentacji technicznej i instrukcji obsługi.',
+    bullets: ['Transport i ustawienie', 'Pierwsze uruchomienie', 'Szkolenie operatorów', 'Dokumentacja techniczna + CE'],
+  },
+];
+
+const competencies = [
+  { label: 'Projektowanie CAD', value: 'SolidWorks · AutoCAD' },
+  { label: 'Spawalnictwo', value: 'MIG/MAG/TIG · stal nierdzewna' },
+  { label: 'Obróbka skrawaniem', value: 'CNC · konwencjonalna' },
+  { label: 'Automatyka', value: 'Falowniki · sterowniki PLC (własne)' },
+  { label: 'Normy projektowe', value: 'PN-ISO · EN · ASTM' },
+  { label: 'Wykończenie', value: 'Malowanie proszkowe · piaskowanie' },
+];
+
+const schema = {
+  '@type': 'HowTo',
+  name: 'Proces produkcji maszyn AS‑LAB',
+  description,
+  totalTime: 'P8W',
+  step: stages.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.desc,
+  })),
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pt-8 pb-12">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Proces produkcji</div>
+      <h1 class="mb-6">Od projektu CAD <br /><span class="text-gradient-bordo">po wdrożenie u klienta</span></h1>
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Cały proces tworzenia maszyn AS‑LAB realizujemy samodzielnie w naszym warsztacie w Łazach
+        k. Bochni. To gwarancja jakości, kontroli technicznej i szybkiego dostosowania urządzenia
+        do indywidualnych potrzeb klienta. 4 etapy, łączny czas realizacji 4-10 tygodni.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page py-12">
+    <div class="space-y-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+      {stages.map((s, i) => (
+        <div class="bg-[var(--color-surface)] p-8 lg:p-10">
+          <div class="grid lg:grid-cols-[180px_1fr_280px] gap-8 lg:gap-12">
+            <div>
+              <div class="font-mono text-5xl font-bold text-gradient-bordo mb-2">{s.n}</div>
+              <div class="font-mono text-xs uppercase tracking-wider text-[var(--color-text-dim)]">{s.duration}</div>
+            </div>
+            <div>
+              <h2 class="text-2xl mb-3">{s.name}</h2>
+              <p class="text-[var(--color-text-muted)] leading-relaxed">{s.desc}</p>
+            </div>
+            <div>
+              <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-3">
+                Kluczowe elementy
+              </div>
+              <ul class="space-y-2">
+                {s.bullets.map((b) => (
+                  <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+                    <span class="text-[var(--color-bordo)] mt-1">›</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="grid lg:grid-cols-3 gap-10">
+      <div>
+        <div class="eyebrow mb-3">Kompetencje techniczne</div>
+        <h2>Co potrafimy w warsztacie</h2>
+        <p class="mt-3 text-[var(--color-text-muted)]">
+          Wieloletnia praktyka w obróbce mechanicznej, automatyce i konstrukcji maszyn
+          przemysłowych. Wszystko pod jednym dachem w Łazach.
+        </p>
+      </div>
+      <div class="lg:col-span-2 card overflow-hidden">
+        <table class="w-full">
+          <tbody>
+            {competencies.map((c, i) => (
+              <tr class={i % 2 === 0 ? 'bg-[var(--color-surface)]' : 'bg-[var(--color-surface-2)]'}>
+                <td class="px-6 py-4 text-sm text-[var(--color-text-muted)] w-1/3 border-b border-[var(--color-border)] last:border-0">
+                  {c.label}
+                </td>
+                <td class="px-6 py-4 text-sm font-mono text-[var(--color-text)] border-b border-[var(--color-border)] last:border-0">
+                  {c.value}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-12">
+    <div class="card p-8 lg:p-12 grid-bg-bordo">
+      <div class="max-w-2xl">
+        <div class="eyebrow mb-3">Polski producent</div>
+        <h2 class="mb-4">Dlaczego cały proces u siebie?</h2>
+        <ul class="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)] mt-2.5 flex-shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Pełna kontrola jakości</strong> - każda część przechodzi przez nasze ręce, znamy każdy element konstrukcji</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)] mt-2.5 flex-shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Krótsze terminy</strong> - brak pośredników, podwykonawców, importów - decyzje natychmiast</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)] mt-2.5 flex-shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Modyfikacje pod klienta</strong> - urządzenie dopasowujemy do specyfiki Państwa próbki, materiału, hali</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)] mt-2.5 flex-shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Serwis pogwarancyjny</strong> - znamy każdą część zamienną i każdą śrubę, naprawa szybko</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)] mt-2.5 flex-shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Polskie know-how</strong> - zespół z ponad 20-letnim doświadczeniem, produkcja w całości w Polsce, dostawy do klientów w kraju i na eksport (Europa, Bliski Wschód)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Zaprojektujemy maszynę pod Państwa potrzeby"
+    description="Konsultacja techniczna w 24h, pełna dokumentacja w 2-5 dni. Realizacja w 4-10 tygodni."
+  />
+</BaseLayout>

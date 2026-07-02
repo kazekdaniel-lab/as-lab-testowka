@@ -1,0 +1,31 @@
+---
+import { siteConfig } from '../lib/nav';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Porozmawiajmy o szczegółach',
+  description = 'Skonfigurujemy urządzenie pod Państwa specyfikę. Bezpłatna wycena w ciągu 24 godzin.',
+} = Astro.props;
+---
+<section class="container-page py-24">
+  <div class="card p-10 lg:p-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-amber)] opacity-[0.04] blur-[100px] rounded-full"></div>
+    <div class="relative">
+      <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight max-w-2xl">{title}</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] max-w-xl text-lg">{description}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/kontakt/" class="btn btn-primary">
+          Zapytaj o wycenę
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+        <a href={`tel:${siteConfig.phoneClean}`} class="btn btn-ghost font-mono">
+          {siteConfig.phone}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

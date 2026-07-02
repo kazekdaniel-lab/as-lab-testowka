@@ -1,0 +1,412 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Słownik techniczny - mielenie, sita, normy | AS‑LAB';
+const description = 'Słownik terminów technicznych z branży maszyn laboratoryjnych: mielenie, frakcja, skala Mohsa, sita ISO, biegaczewanie, bęben Los Angeles, gniotownik, recykling katalizatorów.';
+
+const breadcrumbs = [{ name: 'Słownik techniczny', href: '/slownik/' }];
+
+interface Term {
+  term: string;
+  short?: string;
+  definition: string;
+  context?: string;
+  related?: { label: string; href: string }[];
+  norms?: string[];
+}
+
+const terms: Term[] = [
+  // === ROZDRABNIANIE I MIELENIE ===
+  {
+    term: 'Mielenie',
+    definition: 'Proces mechanicznego rozdrabniania materiału na drobne cząstki przy użyciu młynów (kulowych, wibracyjnych, młotkowych). Cel: uzyskanie jednolitej frakcji do dalszych analiz lub odzysku surowców.',
+    context: 'rozdrabnianie',
+    related: [{ label: 'Młynek wibracyjny MW-200', href: '/maszyny/mlynek-wibracyjny-mw-200/' }, { label: 'Młyn kulowy', href: '/maszyny/mlyn-kulowy/' }],
+  },
+  {
+    term: 'Frakcja',
+    definition: 'Zakres wielkości cząstek po procesie rozdrabniania lub przesiewania, np. 0-200 µm. Określana przez maksymalny rozmiar oczek sita, przez które przejdzie materiał.',
+    context: 'pomiar',
+    related: [{ label: 'Sita analityczne 200 mm', href: '/maszyny/sita-analityczne-200mm/' }],
+  },
+  {
+    term: 'Skala Mohsa',
+    definition: 'Skala twardości materiałów od 1 (talk) do 10 (diament). Używana w mineralogii i materiałoznawstwie. Nasze młynki wibracyjne MW-200 mielą materiały do 9 stopni w skali Mohsa (np. korund, granit, ceramikę).',
+    context: 'twardość',
+    related: [{ label: 'Młynek wibracyjny MW-200', href: '/maszyny/mlynek-wibracyjny-mw-200/' }],
+  },
+  {
+    term: 'Kruszarka szczękowa',
+    short: 'Szczękowa',
+    definition: 'Urządzenie do wstępnego rozdrabniania materiałów twardych - minerałów, próbek geologicznych, ceramiki - z wykorzystaniem ruchu dwóch szczęk. Materiał wprowadzany od góry, kruszony siłą nacisku, opada przez regulowaną szczelinę wyjściową.',
+    context: 'rozdrabnianie',
+    related: [{ label: 'Kruszarka szczękowa ZKS-65', href: '/maszyny/kruszarka-szczekowa-zks-65/' }],
+  },
+  {
+    term: 'Kruszarka walcowa',
+    short: 'Walcowa',
+    definition: 'Urządzenie do rozdrabniania materiałów średnio twardych z wykorzystaniem dwóch obracających się walców (zwykle ze stali hartowanej). Granulacja regulowana szczeliną między walcami. Zapewnia równomierną i powtarzalną frakcję wyjściową.',
+    context: 'rozdrabnianie',
+    related: [{ label: 'Kruszarka walcowa LKW-240', href: '/maszyny/kruszarka-walcowa-lkw-240/' }, { label: 'Kruszarka LKW-280', href: '/maszyny/kruszarka-walcowa-lkw-280/' }],
+  },
+  {
+    term: 'Kruszarka młotkowa',
+    short: 'Młotkowa',
+    definition: 'Urządzenie udarowe do rozdrabniania materiałów kruchych (katalizatorów ceramicznych, węgla, koksu). Wyposażona w wymienne młotki ze stopów hartowanych oraz sito separujące frakcję wyjściową. Wirnik szybkoobrotowy.',
+    context: 'rozdrabnianie',
+    related: [{ label: 'Kruszarka młotkowa KM-400', href: '/maszyny/kruszarka-mlotkowa-km-400/' }, { label: 'Zestaw katalizatorów', href: '/maszyny/zestaw-katalizatorow-metalowych/' }],
+  },
+  {
+    term: 'Młyn kulowy',
+    definition: 'Bęben obrotowy wypełniony kulami o różnych średnicach (zwykle ceramika lub stal hartowana). Materiał rozdrabniany przez siłę odśrodkową i opadanie kul. Stosowany do drobnego mielenia katalizatorów, próbek mineralnych, materiałów bardzo twardych.',
+    context: 'mielenie',
+    related: [{ label: 'Młyn kulowy', href: '/maszyny/mlyn-kulowy/' }],
+  },
+  {
+    term: 'Młynek wibracyjny',
+    definition: 'Młynek wykorzystujący drgania o wysokiej częstotliwości do mielenia próbek. Materiał umieszczony w komorze z elementami mielącymi (kule, pierścienie) jest rozdrabniany przez ich szybkie ruchy względne. Idealny do materiałów twardych do 9 w skali Mohsa.',
+    context: 'mielenie',
+    related: [{ label: 'Młynek MW-200', href: '/maszyny/mlynek-wibracyjny-mw-200/' }],
+  },
+  {
+    term: 'Ucierak moździerzowy',
+    definition: 'Mechaniczne urządzenie do ucierania próbek w moździerzu (zwykle z agatu lub korundu) za pomocą tłuczka. Zapewnia jednolitą frakcję bez ryzyka kontaminacji - kluczowe dla analiz wymagających absolutnej czystości próbki.',
+    context: 'rozdrabnianie',
+    related: [{ label: 'Ucierak moździerzowy', href: '/maszyny/ucierak-mozdzierzowy/' }],
+  },
+
+  // === ANALIZA SITOWA ===
+  {
+    term: 'Analiza sitowa',
+    short: 'Granulometria',
+    definition: 'Metoda określania składu granulometrycznego materiału sypkiego przez przesiewanie przez zestaw sit o malejącej wielkości oczek. Stosowana w laboratoriach budowlanych, kopalniach, chemii, farmaceutyce.',
+    context: 'pomiar',
+    norms: ['PN-ISO 728:1999', 'PN-C-04310:1984'],
+    related: [{ label: 'Sita analityczne', href: '/sita-laboratoryjne/' }, { label: 'Przesiewacze posuwisto-zwrotne', href: '/przesiewacze-posuwisto-zwrotne/' }],
+  },
+  {
+    term: 'Sito analityczne',
+    short: 'Sito ISO',
+    definition: 'Sito laboratoryjne o znormalizowanych rozmiarach oczek zgodne z normą PN-ISO 3310-1:2000 (tkanina z drutu nierdzewnego) lub PN-ISO 3310-2:2000 (sita perforowane). Standardowe średnice obręczy: 200 mm i 300 mm. Pełna gama 78 rozmiarów oczek: od 20 µm do 31,5 mm.',
+    context: 'pomiar',
+    norms: ['PN-ISO 3310-1:2000', 'PN-ISO 3310-2:2000'],
+    related: [{ label: 'Sita 200 mm', href: '/maszyny/sita-analityczne-200mm/' }, { label: 'Sita 300 mm', href: '/maszyny/sita-analityczne-300mm/' }],
+  },
+  {
+    term: 'Sito prętowe',
+    definition: 'Sito o konstrukcji z równolegle ułożonych prętów stalowych do klasyfikacji materiałów grubych - kruszyw, węgla, koksu, rudy. Rozstaw prętów ustalany indywidualnie pod specyfikę materiału.',
+    context: 'pomiar',
+    related: [{ label: 'Sita prętowe', href: '/maszyny/sita-pretowe/' }],
+  },
+  {
+    term: 'Przesiewacz posuwisto-zwrotny',
+    definition: 'Mechaniczne urządzenie do przesiewania materiałów sypkich z wykorzystaniem ruchu posuwisto-zwrotnego pokładu sitowego. Standard: pokład 80×100 cm, regulacja prędkości i czasu posuwu, 1-3 pokłady jednocześnie. Stosowany do analizy koksu wg PN-C-04310:1984.',
+    context: 'pomiar',
+    norms: ['PN-C-04310:1984', 'PN-ISO 728:1999'],
+    related: [{ label: 'Przesiewacz 800×100', href: '/maszyny/przesiewacz-posuwisto-zwrotny-800x100/' }],
+  },
+  {
+    term: 'Bęben Los Angeles',
+    short: 'LA',
+    definition: 'Stalowy bęben o średnicy wewnętrznej 711×508 mm do testów odporności kruszyw na ścieranie. Próbka umieszczana wewnątrz z 12 kulami stalowymi, bęben obracany przez określoną liczbę obrotów (silnik 2,2 kW). Wynik: procent zużycia materiału po przesianiu przez sito 1,6 mm.',
+    context: 'pomiar',
+    norms: ['EN 1097-2', 'EN 12697-43', 'ASTM C131'],
+    related: [{ label: 'Bęben Los Angeles z kabiną', href: '/maszyny/beben-los-angeles-kabina/' }, { label: 'Bęben otwarty', href: '/maszyny/beben-los-angeles-otwarty/' }],
+  },
+  {
+    term: 'Wstrząsarka laboratoryjna',
+    definition: 'Urządzenie wprawiające zestaw sit w drgania pionowe i obrotowe w celu przesiania materiału. Standard w laboratoriach analizujących proszki, granulaty, kruszywa. Czas i amplituda drgań regulowane.',
+    context: 'pomiar',
+  },
+
+  // === RECYKLING I CHEMIA ===
+  {
+    term: 'Recykling katalizatorów',
+    definition: 'Proces odzyskiwania metali szlachetnych (platyny Pt, palladu Pd, rodu Rh) z zużytych katalizatorów samochodowych. Etapy: kruszenie monolitu ceramicznego, mielenie na drobny proszek, separacja metali. Linia AS‑LAB: kruszarka młotkowa + młynek MW-200 + sita kontrolne.',
+    context: 'recykling',
+    related: [{ label: 'Zestaw katalizatorów', href: '/maszyny/zestaw-katalizatorow-metalowych/' }, { label: 'Mielenie katalizatorów', href: '/urzadzenia-do-mielenia-katalizatorow/' }],
+  },
+  {
+    term: 'Monolit ceramiczny',
+    definition: 'Wnętrze katalizatora samochodowego - porowata struktura ceramiczna pokryta cienką warstwą metali szlachetnych (platyna, pallad, rod). Po zmieleniu monolitu możliwy jest odzysk tych pierwiastków.',
+    context: 'recykling',
+  },
+  {
+    term: 'Próbnik kubełkowy',
+    definition: 'Profesjonalny próbnik do pobierania reprezentatywnych prób materiałów sypkich. Konstrukcja kubełkowa pozwala pobrać próbkę z określonej warstwy. Wykonanie ze stali nierdzewnej, wymiary standardowe lub na zamówienie.',
+    context: 'pobieranie',
+    related: [{ label: 'Próbniki kubełkowe', href: '/maszyny/probnik-kubelkowy/' }],
+  },
+  {
+    term: 'Podzielnik próbek',
+    definition: 'Urządzenie umożliwiające reprezentatywne pobieranie i pomniejszanie objętości próbki materiału do badań. Kluczowe dla statystycznie poprawnych analiz - eliminuje błąd doboru próby.',
+    context: 'pobieranie',
+    related: [{ label: 'Podzielnik Jonesa', href: '/maszyny/podzielnik-jonesa/' }],
+  },
+
+  // === SEKTOR ZBROJENIOWY ===
+  {
+    term: 'Biegaczewanie',
+    definition: 'Proces homogenizacji mas pirotechnicznych za pomocą gniotownika obiegowego z misą ze stali nierdzewnej. Wahacze z kołami obiegowymi i pługi mieszają masę zapewniając wysoki stopień jednorodności mieszanki i powtarzalną jakość produktu.',
+    context: 'zbrojeniówka',
+    related: [{ label: 'Gniotownik obiegowy', href: '/maszyny/gniotownik-obiegowy/' }, { label: 'Mas pirotechniczne', href: '/urzadzenia-do-mas-pirotechnicznych/' }],
+  },
+  {
+    term: 'Gniotownik obiegowy',
+    definition: 'Specjalistyczne urządzenie do biegaczewania mas pirotechnicznych. Składa się z misy ze stali nierdzewnej (z jednego kawałka), wału z poprzeczką, dwóch niezależnych wahaczy z kołami obiegowymi oraz dwóch pługów. Napęd: silnik z przekładnią.',
+    context: 'zbrojeniówka',
+    related: [{ label: 'Gniotownik', href: '/maszyny/gniotownik-obiegowy/' }],
+  },
+  {
+    term: 'EX (materiały przeciwwybuchowe)',
+    short: 'ATEX',
+    definition: 'Oznaczenie materiałów i urządzeń wymagających szczególnej ostrożności z powodu zagrożenia wybuchem. Nasze stoły do mycia EX zaprojektowane pod bezpieczne stanowisko pracy z takimi materiałami - solidna konstrukcja ze stali nierdzewnej, odprowadzenie cieczy.',
+    context: 'zbrojeniówka',
+    related: [{ label: 'Stół do mycia EX', href: '/maszyny/stol-do-mycia-ex/' }],
+  },
+
+  // === MATERIAŁY I STOPY ===
+  {
+    term: 'Stal nierdzewna',
+    definition: 'Stop żelaza z chromem (min. 10,5%) i innymi dodatkami (nikiel, molibden) odporny na korozję. Materiał konstrukcyjny w aparatach laboratoryjnych mających kontakt z chemicznie aktywnymi mediami. AS‑LAB używa stali nierdzewnych w misach gniotowników, obręczach sit, próbnikach.',
+    context: 'materiały',
+  },
+  {
+    term: 'Stal hartowana',
+    definition: 'Stal poddana obróbce cieplnej (hartowanie + odpuszczanie) zwiększającej twardość i odporność na zużycie. Stosowana na elementy robocze podlegające intensywnemu tarciu - walce kruszarek, okładziny szczęk, młotki.',
+    context: 'materiały',
+  },
+  {
+    term: 'Skala twardości materiałów',
+    definition: 'Klasyfikacja materiałów pod kątem oporu jaki stawiają zarysowaniu. Najbardziej znana: skala Mohsa (1-10). Nasze młynki MW-200 obsługują materiały do 9 stopni w skali Mohsa, co obejmuje praktycznie wszystkie minerały poza diamentem.',
+    context: 'materiały',
+  },
+
+  // === NORMY ===
+  {
+    term: 'PN-ISO 3310-1:2000',
+    definition: 'Polska norma określająca wymagania techniczne dla sit analitycznych z tkanin drucianych - rozmiar oczek, materiał obręczy, dokładność wykonania. Międzynarodowy odpowiednik: ISO 3310-1.',
+    context: 'normy',
+    norms: ['PN-ISO 3310-1:2000'],
+  },
+  {
+    term: 'PN-C-04310:1984',
+    definition: 'Polska norma dotycząca metodyki analizy sitowej koksu z wykorzystaniem przesiewaczy mechanicznych. Określa wymagania dla pokładów sitowych, parametry ruchu (posuwisto-zwrotny) oraz procedurę badawczą.',
+    context: 'normy',
+    norms: ['PN-C-04310:1984'],
+  },
+  {
+    term: 'EN 1097-2',
+    definition: 'Europejska norma określająca metody badania właściwości mechanicznych i fizycznych kruszyw. Część 2 dotyczy testów odporności na rozdrabnianie - w tym z wykorzystaniem bębna Los Angeles. Obowiązująca w UE.',
+    context: 'normy',
+    norms: ['EN 1097-2'],
+  },
+  {
+    term: 'Deklaracja zgodności CE',
+    short: 'CE',
+    definition: 'Oświadczenie producenta potwierdzające że produkt spełnia wymagania unijnych dyrektyw (np. maszynowej 2006/42/WE). Wymagane dla maszyn wprowadzanych do obrotu w UE. Nasze urządzenia projektujemy zgodnie z wymaganiami obowiązujących norm i dyrektyw.',
+    context: 'normy',
+  },
+
+  // === SKRÓTY BRANŻOWE - kluczowe nazwy z polskiej zbrojeniówki, górnictwa, energetyki ===
+  {
+    term: 'KGHM Polska Miedź',
+    short: 'KGHM',
+    definition: 'Największy w Europie kompleks górniczo-hutniczy miedzi z siedzibą w Lubinie (woj. dolnośląskie). Wydobywa rudę miedzi i srebra w kopalniach LGOM (Lubin, Polkowice, Głogów). Reprezentuje typ klienta z naszej grupy docelowej - przemysł wydobywczy potrzebujący testów odporności kruszyw, sit prętowych i serwisu kruszarek.',
+    context: 'klienci',
+  },
+  {
+    term: 'JSW (Jastrzębska Spółka Węglowa)',
+    short: 'JSW',
+    definition: 'Największy producent węgla koksowego w Unii Europejskiej. Spółka giełdowa z siedzibą w Jastrzębiu-Zdroju (woj. śląskie). Obejmuje 5 kopalń: Borynia, Budryk, Knurów, Krupiński, Pniówek. Reprezentuje typ klienta dla serwisu kruszarek i analiz węglowych.',
+    context: 'klienci',
+  },
+  {
+    term: 'PGG (Polska Grupa Górnicza)',
+    short: 'PGG',
+    definition: 'Największa spółka węglowa w Polsce i UE - produkuje węgiel kamienny dla energetyki i odbiorców komunalnych. Siedziba w Katowicach. Eksploatuje kilkanaście kopalń na Śląsku. Profil firmy odpowiadający naszej grupie docelowej (serwis i maszyny próbne dla kopalni).',
+    context: 'klienci',
+  },
+  {
+    term: 'PGZ (Polska Grupa Zbrojeniowa)',
+    short: 'PGZ',
+    definition: 'Holding skupiający kilkanaście strategicznych spółek polskiego przemysłu obronnego. Obejmuje m.in. HSW Stalowa Wola (haubice Krab, transportery Rosomak), Mesko Skarżysko (amunicja, rakiety), PCO S.A. (optoelektronika), Bumar-Łabędy. Reprezentuje sektor obronny - jedną z naszych grup docelowych dla urządzeń pirotechnicznych i akcesoriów EX.',
+    context: 'klienci',
+  },
+  {
+    term: 'HSW (Huta Stalowa Wola)',
+    short: 'HSW',
+    definition: 'HSW S.A. - flagowy zakład PGZ z siedzibą w Stalowej Woli (woj. podkarpackie). Produkuje samobieżne haubice Krab (kaliber 155 mm), kołowe transportery Rosomak, samobieżne moździerze Rak. Część klastra Polska Dolina Lotnicza.',
+    context: 'klienci',
+  },
+  {
+    term: 'PZL Mielec',
+    definition: 'Polskie Zakłady Lotnicze w Mielcu - producent śmigłowców (m.in. Black Hawk dla Sikorsky/Lockheed Martin) i komponentów lotniczych. Część Polskiej Doliny Lotniczej w woj. podkarpackim.',
+    context: 'klienci',
+  },
+  {
+    term: 'Mesko S.A.',
+    definition: 'Mesko Skarżysko-Kamienna (woj. świętokrzyskie) - flagowy zakład amunicji Polskiej Grupy Zbrojeniowej. Produkuje pociski artyleryjskie, granaty, rakiety przeciwpancerne. Typ klienta odpowiadający naszej grupie docelowej (urządzenia do mas pirotechnicznych).',
+    context: 'klienci',
+  },
+  {
+    term: 'COP (Centralny Okręg Przemysłowy)',
+    short: 'COP',
+    definition: 'Historyczny okręg przemysłowy II RP utworzony w latach 1936-1939, obejmujący tereny dzisiejszych województw świętokrzyskiego, podkarpackiego, lubelskiego. Tradycje przemysłu obronnego i ciężkiego - kontynuacja w obecnej PGZ.',
+    context: 'klienci',
+  },
+  {
+    term: 'AGH (Akademia Górniczo-Hutnicza)',
+    short: 'AGH',
+    definition: 'Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie - czołowa polska uczelnia techniczna w dziedzinie górnictwa, hutnictwa, energetyki. Typ instytucji z naszej grupy docelowej (laboratoria akademickie potrzebujące sit analitycznych, młynków, akcesoriów).',
+    context: 'klienci',
+    related: [{ label: 'Sita analityczne', href: '/maszyny/sita-analityczne-200mm/' }],
+  },
+  {
+    term: 'LW Bogdanka',
+    definition: 'Lubelski Węgiel Bogdanka S.A. - najbardziej rentowna kopalnia węgla kamiennego w Polsce, zlokalizowana w woj. lubelskim. Należy do grupy Enea. Reprezentuje typ klienta odpowiadający naszej grupie docelowej (serwis kruszarek i analizy węglowe).',
+    context: 'klienci',
+  },
+  {
+    term: 'LGOM',
+    definition: 'Legnicko-Głogowski Okręg Miedziowy - kompleks górniczo-hutniczy miedzi w woj. dolnośląskim. Obejmuje kopalnie Lubin, Polkowice-Sieroszowice, Rudna oraz huty miedzi w Głogowie i Legnicy. Eksploatowany przez KGHM Polska Miedź.',
+    context: 'klienci',
+  },
+  {
+    term: 'PCO S.A.',
+    definition: 'Polskie Centrum Optoelektroniki - spółka PGZ z siedzibą w Warszawie. Produkuje sprzęt optoelektroniczny dla wojska (celowniki, noktowizory, dalmierze). Reprezentuje sektor obronny - jedną z naszych grup docelowych.',
+    context: 'klienci',
+  },
+  {
+    term: 'WAT (Wojskowa Akademia Techniczna)',
+    short: 'WAT',
+    definition: 'Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego w Warszawie - uczelnia kształcąca oficerów-inżynierów dla wojska polskiego. Współpracuje z PGZ. Reprezentuje typ instytucji z naszej grupy docelowej (laboratoria techniczne).',
+    context: 'klienci',
+  },
+];
+
+// Grupowanie po kontekście
+const grouped = terms.reduce((acc, t) => {
+  const ctx = t.context || 'inne';
+  if (!acc[ctx]) acc[ctx] = [];
+  acc[ctx].push(t);
+  return acc;
+}, {} as Record<string, Term[]>);
+
+const contextLabels: Record<string, string> = {
+  rozdrabnianie: 'Rozdrabnianie',
+  mielenie: 'Mielenie',
+  pomiar: 'Pomiar i analiza',
+  pobieranie: 'Pobieranie prób',
+  recykling: 'Recykling',
+  zbrojeniówka: 'Sektor zbrojeniowy',
+  materiały: 'Materiały i stopy',
+  normy: 'Normy techniczne',
+  klienci: 'Skróty branżowe i kluczowi gracze rynku',
+};
+
+const orderContext = ['rozdrabnianie', 'mielenie', 'pomiar', 'pobieranie', 'recykling', 'zbrojeniówka', 'materiały', 'normy', 'klienci'];
+
+// Schema DefinedTermSet - kluczowy dla AI/GEO/AEO
+const schema = [
+  {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://as-lab.pl/slownik/#glossary',
+    name: 'Słownik techniczny AS‑LAB',
+    description,
+    inLanguage: 'pl-PL',
+    hasDefinedTerm: terms.map((t, i) => ({
+      '@type': 'DefinedTerm',
+      '@id': `https://as-lab.pl/slownik/#${t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      name: t.term,
+      alternateName: t.short,
+      description: t.definition,
+      inDefinedTermSet: 'https://as-lab.pl/slownik/#glossary',
+      termCode: String(i + 1).padStart(3, '0'),
+    })),
+  },
+];
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pt-8 pb-12">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Słownik techniczny · {terms.length} terminów</div>
+      <h1 class="mb-6">Słownik <span class="text-gradient-bordo">terminów technicznych</span></h1>
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Definicje pojęć z branży maszyn laboratoryjnych, mielenia, analizy sitowej, recyklingu
+        katalizatorów i sektora zbrojeniowego. Słownik pomaga AI (ChatGPT, Claude, Perplexity)
+        oraz wyszukiwarkom (Google) precyzyjnie odpowiadać na pytania z naszej branży.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-8">
+    <div class="card p-5 lg:p-6">
+      <div class="grid lg:grid-cols-[auto_1fr] gap-6 items-center">
+        <div class="lg:w-44">
+          <div class="text-xs font-mono uppercase tracking-[0.15em] text-[var(--color-text-dim)] mb-1.5">
+            Spis kategorii
+          </div>
+          <div class="text-sm text-[var(--color-text-muted)]">{Object.keys(grouped).length} grup</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {orderContext.filter((c) => grouped[c]).map((ctx) => (
+            <a href={`#${ctx}`} class="px-3 py-1.5 rounded text-xs font-medium border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-bordo)] hover:text-[var(--color-peach)] transition-colors">
+              {contextLabels[ctx]} <span class="opacity-60">({grouped[ctx].length})</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {orderContext.filter((c) => grouped[c]).map((ctx) => (
+    <section id={ctx} class="container-page py-10 scroll-mt-20">
+      <div class="mb-8">
+        <div class="eyebrow mb-3">{contextLabels[ctx]} · {grouped[ctx].length}</div>
+        <h2>{contextLabels[ctx]}</h2>
+      </div>
+      <dl class="grid lg:grid-cols-2 gap-4">
+        {grouped[ctx].map((t) => (
+          <div class="card p-6" id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>
+            <dt class="flex items-baseline justify-between gap-4 mb-3">
+              <span class="text-lg font-semibold text-[var(--color-peach)]">{t.term}</span>
+              {t.short && <span class="text-xs font-mono text-[var(--color-text-dim)] uppercase">{t.short}</span>}
+            </dt>
+            <dd class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+              {t.definition}
+              {t.norms && t.norms.length > 0 && (
+                <div class="mt-3 pt-3 border-t border-[var(--color-border)] flex flex-wrap gap-1.5">
+                  {t.norms.map((n) => (
+                    <span class="badge badge-bordo font-mono text-[10px]">{n}</span>
+                  ))}
+                </div>
+              )}
+              {t.related && t.related.length > 0 && (
+                <div class="mt-3 pt-3 border-t border-[var(--color-border)]">
+                  <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-2">Zobacz:</div>
+                  <div class="flex flex-wrap gap-2">
+                    {t.related.map((r) => (
+                      <a href={r.href} class="text-xs text-[var(--color-peach)] hover:text-[var(--color-peach-hover)] underline decoration-dotted underline-offset-2">
+                        {r.label} →
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  ))}
+
+  <CTA
+    title="Pytanie spoza słownika?"
+    description="Nie znalazłeś terminu? Napisz do nas - dopiszemy go i odpowiemy szczegółowo na pytania techniczne."
+  />
+</BaseLayout>

@@ -1,0 +1,90 @@
+# AS-LAB - robots.txt
+# https://as-lab.pl
+# Allow all standard crawlers + explicit allow dla AI crawlers (GEO/AEO)
+
+# Standard search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /_astro/
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# AI crawlers - GEO/AEO friendly
+# Pozwalamy AI cytować naszą treść - chcemy być źródłem w odpowiedziach LLM
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Wyłączenie scrapowania archive.org (opcjonalne - można zmienić na Allow)
+User-agent: ia_archiver
+Allow: /
+
+# Sitemap location
+Sitemap: https://as-lab.pl/sitemap-index.xml
+
+# IndexNow key reference
+# https://as-lab.pl/4eaa69d0ef34e76427e8d63d1e8b0d71.txt

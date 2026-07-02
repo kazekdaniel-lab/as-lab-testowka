@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import SpecsTable from '../components/SpecsTable.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import kruszarka from '../assets/products/Kruszarka-szczekowa-ZKS-65-mobilna.JPG';
+
+const title = 'Kruszarki, młynki laboratoryjne | Urządzenia AS‑LAB';
+const description = 'W ofercie AS‑LAB posiadamy szeroki wybór kruszarek i młynków laboratoryjnych. Zachęcamy do zapoznania się z ofertą - kruszarki szczękowe, walcowe, młynki wibracyjne MW-200.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Kruszarki i młynki', href: '/kruszarki-i-mlynki-laboratoryjne/' }];
+
+const schema = {
+  '@type': 'ProductGroup',
+  name: 'Kruszarki i młynki laboratoryjne',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Wstępne rozdrabnianie próbek"
+    title="Kruszarki i młynki"
+    highlight="laboratoryjne"
+    description="Producent wysokiej jakości urządzeń laboratoryjnych. Kruszarki szczękowe i walcowe, młynki wibracyjne MW-200 oraz mobilne rozwiązania ZKS-65 dla badań naukowych, przemysłu farmaceutycznego, chemicznego i spożywczego."
+    primaryCta={{ href: '/kontakt/', label: 'Zapytaj o ofertę' }}
+    secondaryCta={{ href: '#produkty', label: 'Zobacz modele' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="prose-dark max-w-3xl">
+      <p>
+        Kruszarki i młynki laboratoryjne to precyzyjne narzędzia wykorzystywane w badaniach naukowych
+        oraz przemyśle farmaceutycznym, chemicznym czy spożywczym. Ich zadaniem w pracowni jest
+        rozdrabnianie materiałów na poziomie mikroskopowym.
+      </p>
+      <p>
+        Działanie kruszarek może polegać na różnych mechanizmach rozdrabniania - <strong>mechanicznym,
+        udarowym, ściernym</strong>. Młynki służą do mielenia, homogenizowania i mieszania próbki w celu
+        uzyskania jednolitego produktu - dostępne są typy <strong>kulkowe, nożowe, wibracyjne</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section id="produkty" class="container-page py-12 scroll-mt-20">
+    <div class="grid lg:grid-cols-2 gap-8">
+      <article class="card p-8">
+        <span class="badge badge-amber mb-4">Mobilna</span>
+        <h2 class="text-2xl mb-3">Kruszarka szczękowa ZKS-65</h2>
+        <p class="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+          Mobilna laboratoryjna kruszarka szczękowa wykorzystywana do kruszenia substancji stałych -
+          minerałów, próbek geologicznych, materiałów ceramicznych i biologicznych. Niezastąpiona tam,
+          gdzie wymagane są precyzyjne i jednorodne frakcje materiałów.
+        </p>
+        <div class="aspect-[4/3] overflow-hidden rounded-md bg-[var(--color-bg)] mb-6">
+          <Image
+            src={kruszarka}
+            alt="Kruszarka szczękowa ZKS-65 mobilna"
+            widths={[400, 800]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Mechanizm', value: 'Szczękowy' },
+            { label: 'Mobilność', value: 'Mobilna' },
+            { label: 'Zastosowanie', value: 'Próbki geologiczne, ceramika' },
+            { label: 'Frakcja wyjściowa', value: 'Regulowana' },
+          ]}
+        />
+      </article>
+
+      <article class="card p-8">
+        <span class="badge mb-4">Walcowa</span>
+        <h2 class="text-2xl mb-3">Laboratoryjna kruszarka walcowa</h2>
+        <p class="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+          Kruszarka walcowa do precyzyjnego rozdrabniania materiałów twardych. Konstrukcja zapewnia
+          równomierną pracę i powtarzalną granulację frakcji wyjściowej. Wymienne walce dopasowane do
+          specyfiki materiału.
+        </p>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Mechanizm', value: 'Walcowy' },
+            { label: 'Materiał walców', value: 'Stal hartowana' },
+            { label: 'Regulacja szczeliny', value: 'Tak' },
+            { label: 'Zastosowanie', value: 'Materiały twarde' },
+          ]}
+        />
+      </article>
+
+      <article class="card p-8">
+        <span class="badge mb-4">Wibracyjny</span>
+        <h2 class="text-2xl mb-3">Młynek wibracyjny MW-200</h2>
+        <p class="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+          Laboratoryjny młynek wibracyjny typu MW-200 służy do mielenia materiałów suchych, kruchych,
+          a także średnio oraz <strong>bardzo twardych (do 9 stopni w skali Mohsa)</strong>. W zależności
+          od indywidualnej konfiguracji może mleć katalizatory samochodowe, próbki geologiczne, ceramikę.
+        </p>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Typ', value: 'Wibracyjny' },
+            { label: 'Twardość materiału', value: 'do 9 w skali Mohsa' },
+            { label: 'Stan próbki', value: 'Suchy, kruchy' },
+            { label: 'Konfiguracja', value: 'Indywidualna' },
+          ]}
+        />
+      </article>
+
+      <article class="card p-8">
+        <span class="badge mb-4">Model koncepcyjny</span>
+        <h2 class="text-2xl mb-3">Model LKW-240</h2>
+        <p class="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+          Koncepcyjny model kruszarki walcowej z większą szerokością roboczą. Projektowany pod
+          zwiększoną przepustowość, dostępny na zapytanie z pełną dokumentacją techniczną.
+        </p>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Typ', value: 'Kruszarka walcowa' },
+            { label: 'Szerokość robocza', value: '240 mm' },
+            { label: 'Status', value: 'Na zapytanie' },
+          ]}
+        />
+      </article>
+    </div>
+  </section>
+
+  <CTA
+    title="Postaw na profesjonalizm"
+    description="Dobierzemy urządzenie pod Państwa typ materiału i wymaganą frakcję wyjściową. Możliwa demonstracja u klienta."
+  />
+</BaseLayout>

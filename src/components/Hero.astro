@@ -1,0 +1,64 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  highlight?: string;
+  description: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  metrics?: { value: string; label: string }[];
+}
+
+const { eyebrow, title, highlight, description, primaryCta, secondaryCta, metrics } = Astro.props;
+---
+<section class="relative overflow-hidden grid-bg">
+  <div class="absolute inset-0 mask-fade-b">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--color-amber)] opacity-[0.06] blur-[120px] rounded-full"></div>
+    <div class="absolute top-32 right-0 w-[400px] h-[400px] bg-[var(--color-cyan)] opacity-[0.08] blur-[100px] rounded-full"></div>
+  </div>
+
+  <div class="container-page relative py-20 lg:py-32">
+    {eyebrow && (
+      <div class="inline-flex items-center gap-2 mb-6">
+        <span class="w-1 h-1 rounded-full bg-[var(--color-amber)]"></span>
+        <span class="text-xs font-mono uppercase tracking-[0.2em] text-[var(--color-amber)]">{eyebrow}</span>
+      </div>
+    )}
+
+    <h1 class="max-w-4xl">
+      {title}
+      {highlight && <><br /><span class="text-gradient-amber">{highlight}</span></>}
+    </h1>
+
+    <p class="mt-6 text-lg lg:text-xl text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
+      {description}
+    </p>
+
+    {(primaryCta || secondaryCta) && (
+      <div class="mt-10 flex flex-wrap gap-3">
+        {primaryCta && (
+          <a href={primaryCta.href} class="btn btn-primary">
+            {primaryCta.label}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </a>
+        )}
+        {secondaryCta && (
+          <a href={secondaryCta.href} class="btn btn-ghost">
+            {secondaryCta.label}
+          </a>
+        )}
+      </div>
+    )}
+
+    {metrics && metrics.length > 0 && (
+      <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-lg overflow-hidden hero-enter">
+        {metrics.map((m) => (
+          <div class="bg-[var(--color-surface)] p-6">
+            <div class="font-mono text-2xl lg:text-3xl font-semibold text-gradient-cyan" data-countup>{m.value}</div>
+            <div class="text-xs uppercase tracking-wider text-[var(--color-text-dim)] mt-2">{m.label}</div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

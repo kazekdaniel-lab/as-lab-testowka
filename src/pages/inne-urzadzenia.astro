@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import CTA from '../components/CTA.astro';
+import probniki from '../assets/products/Probniki-kubełkowe-szczelinowe.JPG';
+import wozek from '../assets/products/Wozek-transpostowy.JPG';
+import stol from '../assets/products/Stol-do-mycia-materialow-przeciwwybuchowych.JPG';
+
+const title = 'Inne urządzenia laboratoryjne | Próbniki, wózki, stoły | AS‑LAB';
+const description = 'Inne urządzenia laboratoryjne AS‑LAB: próbniki kubełkowe i szczelinowe, wózki transportowe, stoły do mycia materiałów przeciwwybuchowych, ucieraki moździerzowe.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Inne urządzenia', href: '/inne-urzadzenia/' }];
+
+const items = [
+  {
+    href: '#probniki',
+    title: 'Próbniki kubełkowe i szczelinowe',
+    description: 'Profesjonalne próbniki do pobierania reprezentatywnych prób materiałów sypkich. Wykonanie z trwałych materiałów odpornych na zużycie.',
+    image: probniki,
+    tag: 'Pobieranie próbek',
+  },
+  {
+    href: '#wozki',
+    title: 'Wózki transportowe',
+    description: 'Wykonujemy różnego rodzaju wózki transportowe dla laboratoriów i zakładów przemysłowych. Konstrukcja dopasowana do przenoszonych materiałów.',
+    image: wozek,
+    tag: 'Transport',
+  },
+  {
+    href: '#stoly',
+    title: 'Stół do mycia materiałów przeciwwybuchowych',
+    description: 'Stół roboczy zaprojektowany pod bezpieczne mycie materiałów wymagających szczególnej ostrożności. Solidna konstrukcja, łatwa konserwacja.',
+    image: stol,
+    tag: 'EX',
+  },
+  {
+    href: '#ucierak',
+    title: 'Ucierak moździerzowy',
+    description: 'Urządzenie do mechanicznego ucierania próbek w moździerzu. Pozwala uzyskać jednolitą frakcję rozdrobnienia bez ryzyka kontaminacji.',
+    tag: 'Rozdrabnianie',
+  },
+];
+
+const schema = {
+  '@type': 'ItemList',
+  name: 'Inne urządzenia laboratoryjne',
+  itemListElement: items.map((it, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: it.title,
+  })),
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Akcesoria i sprzęt pomocniczy"
+    title="Inne"
+    highlight="urządzenia"
+    description="Próbniki kubełkowe i szczelinowe, wózki transportowe, stoły do mycia materiałów przeciwwybuchowych, ucieraki moździerzowe. Sprzęt pomocniczy dla pełnej obsługi laboratorium."
+    primaryCta={{ href: '/kontakt/', label: 'Zapytaj o ofertę' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="grid sm:grid-cols-2 gap-6">
+      {items.map((it) => <ProductCard {...it} />)}
+    </div>
+  </section>
+
+  <CTA
+    title="Indywidualne wykonanie akcesoriów"
+    description="Wykonamy próbniki, wózki czy stoły pod Państwa specyfikę. Konsultacja techniczna w cenie wyceny."
+  />
+</BaseLayout>

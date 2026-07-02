@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import MachinePlaceholder from './MachinePlaceholder.astro';
+
+interface Props {
+  machine: {
+    id: string;
+    data: {
+      name: string;
+      shortName?: string;
+      model?: string;
+      tagline: string;
+      category: string;
+      image?: string;
+      imageAlt?: string;
+      featured?: boolean;
+      norms?: string[];
+    };
+  };
+  size?: 'sm' | 'md' | 'lg';
+}
+const { machine, size = 'md' } = Astro.props;
+const { id, data } = machine;
+
+// Dynamic image import via glob
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/products/*.{JPG,jpg,jpeg,png,webp,avif}', { eager: true });
+const imageEntry = data.image
+  ? images[`/src/assets/products/${data.image}`]
+  : undefined;
+
+const href = `/maszyny/${id}/`;
+const heightClass = size === 'lg' ? 'aspect-[4/3]' : size === 'sm' ? 'aspect-[5/4]' : 'aspect-[4/3]';
+---
+<a href={href} class="card card-hover group flex flex-col overflow-hidden">
+  <div class={`${heightClass} relative bg-[var(--color-bg)] overflow-hidden`}>
+    {imageEntry ? (
+      <Image
+        src={imageEntry.default}
+        alt={data.imageAlt ?? data.name}
+        widths={[400, 600, 800]}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    ) : (
+      <MachinePlaceholder name={data.name} category={data.shortName} />
+    )}
+    <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-50 pointer-events-none"></div>
+    {data.featured && (
+      <span class="absolute top-3 left-3 badge badge-bordo">Wyróżniony</span>
+    )}
+    {data.model && (
+      <span class="absolute top-3 right-3 font-mono text-[10px] font-medium tracking-wider text-[var(--color-peach)] bg-[var(--color-bg)]/80 backdrop-blur px-2 py-0.5 rounded">
+        {data.model}
+      </span>
+    )}
+  </div>
+  <div class="p-5 flex-1 flex flex-col">
+    <h3 class="text-base lg:text-lg font-semibold tracking-tight mb-2 text-[var(--color-text)] group-hover:text-[var(--color-peach)] transition-colors">
+      {data.name}
+    </h3>
+    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1 line-clamp-3">
+      {data.tagline}
+    </p>
+    {data.norms && data.norms.length > 0 && (
+      <div class="mt-3 flex flex-wrap gap-1.5">
+        {data.norms.slice(0, 2).map((n) => (
+          <span class="font-mono text-[10px] text-[var(--color-text-dim)] uppercase tracking-wider">{n}</span>
+        ))}
+      </div>
+    )}
+    <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-peach)] opacity-0 group-hover:opacity-100 transition-opacity">
+      Specyfikacja techniczna
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import SpecsTable from '../components/SpecsTable.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import gniotownik from '../assets/products/Gniotownik-do-mas-pirotechnicznych.JPG';
+
+const title = 'Urządzenia do mas pirotechnicznych | Gniotownik | AS‑LAB';
+const description = 'Gniotownik obiegowy do biegaczewania mas pirotechnicznych. Misa ze stali nierdzewnej, wahacze z kołami obiegowymi. Specjalistyczne urządzenie AS‑LAB.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Mas pirotechnicznych', href: '/urzadzenia-do-mas-pirotechnicznych/' }];
+
+const schema = {
+  '@type': 'Product',
+  name: 'Gniotownik do mas pirotechnicznych',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+  category: 'Urządzenia specjalistyczne',
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Urządzenia specjalistyczne"
+    title="Mas"
+    highlight="pirotechnicznych"
+    description="Gniotownik obiegowy to specjalistyczne urządzenie przeznaczone do biegaczewania mas pirotechnicznych. Wysoka homogeniczność mieszanki i powtarzalna jakość produktu końcowego."
+    primaryCta={{ href: '/kontakt/', label: 'Zapytaj o szczegóły' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-3 prose-dark">
+        <h2>Gniotownik do mas pirotechnicznych</h2>
+        <p>
+          Gniotownik obiegowy to <strong>specjalistyczne urządzenie przeznaczone do biegaczewania
+          mas pirotechnicznych</strong>. Umożliwia uzyskanie wysokiego stopnia homogeniczności
+          mieszanki oraz powtarzalnej jakości produktu końcowego.
+        </p>
+
+        <h2>Konstrukcja</h2>
+        <p>
+          Urządzenie wyposażone jest w <strong>misę wykonaną z jednego kawałka stali nierdzewnej</strong>,
+          osadzoną na przekładni połączonej z silnikiem napędowym. W osi misy znajduje się wał z
+          poprzeczką, na której zamontowane są <strong>dwa niezależne wahacze z kołami obiegowymi</strong>
+          oraz dwa pługi.
+        </p>
+        <p>
+          Solidna konstrukcja oraz zastosowanie wysokiej jakości materiałów zapewniają <strong>trwałość,
+          niezawodność i bezpieczeństwo użytkowania</strong> w warunkach pracy z materiałami wrażliwymi.
+        </p>
+
+        <h2>Zastosowanie</h2>
+        <ul>
+          <li>Biegaczewanie mas pirotechnicznych</li>
+          <li>Homogenizacja mieszanek</li>
+          <li>Produkcja powtarzalnych partii materiałów</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2 space-y-6">
+        <div class="aspect-square overflow-hidden rounded-lg bg-[var(--color-bg)]">
+          <Image
+            src={gniotownik}
+            alt="Gniotownik do mas pirotechnicznych - misa ze stali nierdzewnej"
+            widths={[400, 800]}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Typ', value: 'Gniotownik obiegowy' },
+            { label: 'Misa', value: 'Stal nierdzewna' },
+            { label: 'Wykonanie misy', value: 'Z jednego kawałka' },
+            { label: 'Wahacze', value: '2 niezależne' },
+            { label: 'Koła obiegowe', value: 'Tak' },
+            { label: 'Pługi', value: '2 szt.' },
+            { label: 'Napęd', value: 'Silnik z przekładnią' },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-4">
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="card p-6 lg:p-8">
+        <div class="eyebrow mb-3">Oferta dla sektora obronnego</div>
+        <h2 class="text-2xl mb-4">Gniotowniki, tokarki i urządzenia specjalne</h2>
+        <p class="text-[var(--color-text-muted)] leading-relaxed mb-4">
+          Działamy w sektorze zbrojeniowym od kilku lat, realizując projekty związane z produkcją
+          i przetwarzaniem materiałów pirotechnicznych i specjalnych. W naszej ofercie znajdują się
+          m.in. różnego rodzaju <strong class="text-[var(--color-text)]">gniotowniki</strong>,
+          <strong class="text-[var(--color-text)]">tokarki do mas pirotechnicznych</strong> oraz inne
+          maszyny projektowane pod indywidualne wymagania klientów z branży obronnej.
+        </p>
+        <a href="/maszyny/tokarka-do-mas-pirotechnicznych/" class="text-sm font-medium text-[var(--color-peach)] hover:text-[var(--color-peach-hover)] inline-flex items-center gap-1.5">
+          Tokarka do mas pirotechnicznych
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+      </div>
+      <div class="card card-bordo p-6 lg:p-8">
+        <div class="flex items-start gap-3 mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.5" class="flex-shrink-0 mt-0.5">
+            <rect x="5" y="11" width="14" height="10" rx="2"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          </svg>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Poufność (NDA)</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+              Ze względu na obowiązujące umowy o zachowaniu poufności (NDA) nie publikujemy
+              szczegółowych informacji technicznych, zdjęć ani realizacji dotyczących większości
+              projektów wykonywanych dla sektora obronnego. Na stronie prezentujemy jedynie wybrane
+              urządzenia, dla których uzyskaliśmy zgodę na publikację.
+            </p>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+              W sprawie projektów dla branży zbrojeniowej prosimy o
+              <a href="/kontakt/" class="text-[var(--color-peach)]"> bezpośredni kontakt</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Bezpieczeństwo materiałów wrażliwych"
+    description="Konstrukcja zoptymalizowana pod pracę z masami pirotechnicznymi. Szczegóły techniczne i wycena na zapytanie."
+  />
+</BaseLayout>

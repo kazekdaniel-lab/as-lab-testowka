@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../lib/nav';
+
+const title = 'Polityka prywatności';
+const description = 'Informacje dotyczące przetwarzania danych osobowych przez AS‑LAB Sp. z o.o. zgodnie z RODO.';
+
+const breadcrumbs = [{ name: 'Polityka prywatności', href: '/polityka-prywatnosci/' }];
+---
+<BaseLayout {title} {description} noindex={false} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-narrow py-16 lg:py-24">
+    <h1 class="mb-8">Polityka prywatności</h1>
+    <div class="prose-dark">
+      <p>
+        Niniejsza polityka prywatności określa zasady przetwarzania danych osobowych przez
+        <strong>{siteConfig.legalName}</strong>, {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.locality}.
+      </p>
+
+      <h2>Administrator danych</h2>
+      <p>
+        Administratorem danych osobowych jest <strong>{siteConfig.legalName}</strong>,
+        {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.locality}
+        (NIP: {siteConfig.nip}, REGON: {siteConfig.regon}, KRS: {siteConfig.krs}). Kontakt w sprawach
+        ochrony danych: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+      </p>
+
+      <h2>Zakres przetwarzanych danych</h2>
+      <p>Przetwarzamy dane podawane w formularzu kontaktowym: imię i nazwisko, adres e-mail, treść wiadomości.</p>
+
+      <h2>Cel i podstawa przetwarzania</h2>
+      <ul>
+        <li>Odpowiedź na zapytanie (art. 6 ust. 1 lit. b RODO)</li>
+        <li>Przedstawienie oferty handlowej (art. 6 ust. 1 lit. f RODO)</li>
+      </ul>
+
+      <h2>Okres przechowywania</h2>
+      <p>Dane przechowujemy przez okres niezbędny do udzielenia odpowiedzi i ewentualnej dalszej współpracy, nie dłużej niż 3 lata.</p>
+
+      <h2>Prawa osób, których dane dotyczą</h2>
+      <ul>
+        <li>Prawo dostępu do danych</li>
+        <li>Prawo do sprostowania</li>
+        <li>Prawo do usunięcia</li>
+        <li>Prawo do ograniczenia przetwarzania</li>
+        <li>Prawo wniesienia skargi do Prezesa UODO</li>
+      </ul>
+
+      <h2>Pliki cookies</h2>
+      <p>
+        Serwis w obecnej wersji nie zapisuje na urządzeniu Użytkownika plików cookies ani nie korzysta z narzędzi
+        analitycznych czy reklamowych podmiotów trzecich. W przypadku wdrożenia w przyszłości narzędzi analitycznych
+        (np. statystyki odwiedzin) ich uruchomienie nastąpi wyłącznie po uzyskaniu zgody Użytkownika wyrażonej za
+        pośrednictwem odpowiedniego mechanizmu zgody.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

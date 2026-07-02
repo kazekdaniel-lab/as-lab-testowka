@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import mielniki from '../assets/products/nietypowe-mielniki.jpeg';
+import misy from '../assets/products/nietypowe-misy.jpeg';
+import zasypniki from '../assets/products/nietypowe-zasypniki.jpeg';
+import tace from '../assets/products/nietypowe-tace.jpeg';
+
+const gallery = [
+  { src: mielniki, alt: 'Mielniki do mis mielących' },
+  { src: misy, alt: 'Misy nierdzewne na zamówienie' },
+  { src: zasypniki, alt: 'Zasypniki z popychaczem' },
+  { src: tace, alt: 'Tace aluminiowe do suszenia próbek' },
+];
+
+const title = 'Nietypowe zamówienia | Oferty indywidualne | AS‑LAB';
+const description = 'W odpowiedzi na potrzeby naszych Klientów, realizujemy również nietypowe zamówienia. Zapraszamy do współpracy - sondy, cylindry, tace, podzielniki na zamówienie.';
+
+const breadcrumbs = [{ name: 'Nietypowe zamówienia', href: '/nietypowe-zamowienia/' }];
+
+const items = [
+  {
+    title: 'Sondy do pobierania prób materiałów sypkich',
+    desc: 'Tworzymy sondy, dopasowując je do indywidualnych wymagań Klienta. Nasze rozwiązania są elastyczne i różnorodne, umożliwiając dostosowanie rozmiaru, kształtu oraz materiałów do specyfiki badanego materiału.',
+  },
+  {
+    title: 'Cylindry pomiarowe do oznaczania gęstości nasypowej kruszyw',
+    desc: 'Przystosowujemy cylindry do indywidualnych potrzeb, zgodnie z oczekiwaniami Klienta. Nasze artykuły wyróżniają się trwałością oraz precyzją pomiarów - dokładne określenie gęstości nasypowej kruszyw.',
+  },
+  {
+    title: 'Tace do suszenia próbek',
+    desc: 'Szeroki wybór tac do suszenia materiałów: żaroodporne, nierdzewne, aluminiowe, w różnych rozmiarach. Wysoka odporność na temperatury gwarantuje bezpieczeństwo nawet w ekstremalnych warunkach termicznych.',
+  },
+  {
+    title: 'Podzielniki do reprezentatywnego pobierania i pomniejszania próbek',
+    desc: 'Podzielniki próbek umożliwiające reprezentatywne pobieranie i pomniejszanie objętości materiału do badań. Konfiguracja pod typ próbki i wymaganą frakcję.',
+  },
+  {
+    title: 'Rurki dylatometryczne wraz z tłoczkami',
+    desc: 'Akcesoria do badań dylatometrycznych - rurki w komplecie z tłoczkami, dopasowane do specyfiki aparatu pomiarowego.',
+  },
+  {
+    title: 'Tacki aluminiowe do suszenia próbek',
+    desc: 'Lekkie tacki aluminiowe do procesów suszenia. Różne rozmiary, możliwość masowego zamówienia dla laboratoriów wykonujących wiele analiz dziennie.',
+  },
+  {
+    title: 'Kwasoodporne kadzie',
+    desc: 'Kadzie wykonane z materiałów odpornych na działanie kwasów. Pojemność i konfiguracja na zamówienie.',
+  },
+  {
+    title: 'Zasypniki z popychaczem',
+    desc: 'Zasypniki dopasowane do urządzeń mielących i przesiewających. Popychacz ułatwia kontrolowany załadunek materiału.',
+  },
+  {
+    title: 'Sita o niestandardowych wymiarach',
+    desc: 'Sita laboratoryjne o nietypowych średnicach obręczy lub specjalnych rozmiarach oczek - produkcja pod konkretne wymagania badawcze.',
+  },
+];
+
+const schema = {
+  '@type': 'Service',
+  serviceType: 'Indywidualne zamówienia laboratoryjne',
+  provider: { '@id': 'https://as-lab.pl/#organization' },
+  description,
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Indywidualne rozwiązania"
+    title="Nietypowe"
+    highlight="zamówienia"
+    description="Wychodząc naprzeciw nietypowym wymaganiom realizujemy zamówienia niestandardowe - od projektowania po szybkie wdrażanie innowacyjnych rozwiązań. Profesjonalizm, precyzja, kompleksowe podejście."
+    primaryCta={{ href: '/kontakt/', label: 'Opisz potrzebę' }}
+  />
+
+  <section class="container-page pt-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {gallery.map((g) => (
+        <div class="aspect-square overflow-hidden rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)]">
+          <Image
+            src={g.src}
+            alt={g.alt}
+            widths={[300, 500, 700]}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="prose-dark max-w-3xl mb-12">
+      <p>
+        Współpraca z nami to <strong>gwarancja profesjonalizmu, precyzji i kompleksowego podejścia
+        do realizacji</strong> nawet najbardziej wyjątkowych projektów. Nasza zdolność do
+        dostosowywania się do nietypowych zadań obejmuje zarówno projektowanie, jak i szybkie
+        wdrażanie innowacyjnych rozwiązań.
+      </p>
+      <p>Na indywidualne zamówienie przygotujemy dla Państwa:</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      {items.map((it, i) => (
+        <article class="card p-6 flex gap-4">
+          <div class="font-mono text-xs text-[var(--color-amber)] tabular-nums pt-0.5 flex-shrink-0">
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <div>
+            <h3 class="text-base font-semibold mb-2 text-[var(--color-text)]">{it.title}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{it.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CTA
+    title="Masz nietypowy projekt?"
+    description="Opisz potrzebę - przygotujemy koncepcję, wycenę i harmonogram realizacji. Specjalizujemy się w trudnych zamówieniach."
+  />
+</BaseLayout>

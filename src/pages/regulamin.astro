@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../lib/nav';
+
+const title = 'Regulamin serwisu';
+const description = 'Regulamin korzystania z serwisu internetowego as-lab.pl oraz świadczenia usług drogą elektroniczną przez AS‑LAB Sp. z o.o.';
+
+const breadcrumbs = [{ name: 'Regulamin serwisu', href: '/regulamin/' }];
+const effectiveDate = '30 czerwca 2026 r.';
+---
+<BaseLayout {title} {description} noindex={false} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-narrow py-16 lg:py-24">
+    <h1 class="mb-8">Regulamin serwisu</h1>
+    <div class="prose-dark">
+      <p>
+        Niniejszy regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem
+        <strong>{siteConfig.url}</strong> oraz warunki świadczenia usług drogą elektroniczną przez
+        <strong>{siteConfig.legalName}</strong>. Regulamin jest udostępniany nieodpłatnie i w sposób umożliwiający
+        jego pozyskanie, odtworzenie i utrwalenie.
+      </p>
+
+      <h2>§ 1. Definicje</h2>
+      <ul>
+        <li><strong>Usługodawca</strong> - {siteConfig.legalName}, {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.locality} (NIP: {siteConfig.nip}, REGON: {siteConfig.regon}, KRS: {siteConfig.krs}).</li>
+        <li><strong>Serwis</strong> - strona internetowa działająca pod adresem {siteConfig.url} wraz z podstronami.</li>
+        <li><strong>Użytkownik</strong> - osoba fizyczna, prawna lub jednostka organizacyjna korzystająca z Serwisu.</li>
+        <li><strong>Usługa</strong> - usługa świadczona drogą elektroniczną przez Usługodawcę na rzecz Użytkownika za pośrednictwem Serwisu.</li>
+        <li><strong>Formularz kontaktowy</strong> - funkcjonalność umożliwiająca przesłanie wiadomości do Usługodawcy.</li>
+      </ul>
+
+      <h2>§ 2. Postanowienia ogólne</h2>
+      <ul>
+        <li>Właścicielem i administratorem Serwisu jest Usługodawca.</li>
+        <li>Kontakt z Usługodawcą jest możliwy pod adresem e-mail <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> oraz telefonicznie pod numerem <a href={`tel:${siteConfig.phoneClean}`}>{siteConfig.phone}</a>.</li>
+        <li>Korzystanie z Serwisu oznacza akceptację niniejszego regulaminu.</li>
+        <li>Serwis ma charakter informacyjny i prezentuje ofertę Usługodawcy. Informacje zawarte w Serwisie nie stanowią oferty w rozumieniu art. 66 § 1 Kodeksu cywilnego, lecz zaproszenie do zawarcia umowy (art. 71 Kodeksu cywilnego).</li>
+      </ul>
+
+      <h2>§ 3. Rodzaj i zakres usług świadczonych drogą elektroniczną</h2>
+      <ul>
+        <li>Usługodawca świadczy nieodpłatnie usługę przeglądania treści udostępnionych w Serwisie.</li>
+        <li>Usługodawca udostępnia nieodpłatnie Formularz kontaktowy umożliwiający przesłanie zapytania.</li>
+        <li>Usługi świadczone są drogą elektroniczną w rozumieniu ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną.</li>
+      </ul>
+
+      <h2>§ 4. Warunki techniczne korzystania z Serwisu</h2>
+      <p>Do prawidłowego korzystania z Serwisu niezbędne jest:</p>
+      <ul>
+        <li>urządzenie z dostępem do sieci Internet,</li>
+        <li>aktualna przeglądarka internetowa z włączoną obsługą języka JavaScript,</li>
+        <li>w przypadku korzystania z Formularza kontaktowego - aktywny adres poczty elektronicznej.</li>
+      </ul>
+
+      <h2>§ 5. Warunki zawierania i rozwiązywania umów</h2>
+      <ul>
+        <li>Umowa o świadczenie usługi przeglądania treści zostaje zawarta z chwilą wejścia do Serwisu i rozwiązana z chwilą jego opuszczenia.</li>
+        <li>Umowa o świadczenie usługi Formularza kontaktowego zostaje zawarta z chwilą rozpoczęcia korzystania z Formularza i ma charakter jednorazowy - ulega rozwiązaniu z chwilą wysłania wiadomości albo zaprzestania korzystania z Formularza.</li>
+        <li>Korzystanie z usług jest dobrowolne i nieodpłatne.</li>
+      </ul>
+
+      <h2>§ 6. Zasady korzystania z Serwisu</h2>
+      <ul>
+        <li>Użytkownik zobowiązany jest do korzystania z Serwisu zgodnie z prawem, dobrymi obyczajami oraz niniejszym regulaminem.</li>
+        <li>Zakazane jest dostarczanie przez Użytkownika treści o charakterze bezprawnym, w tym za pośrednictwem Formularza kontaktowego.</li>
+        <li>Zakazane są działania mogące zakłócić prawidłowe funkcjonowanie Serwisu, w szczególności ingerencja w jego kod, treść lub infrastrukturę techniczną.</li>
+      </ul>
+
+      <h2>§ 7. Prawa własności intelektualnej</h2>
+      <p>
+        Treści zamieszczone w Serwisie, w tym teksty, zdjęcia, grafiki, układ i kompozycja stron oraz oznaczenia
+        Usługodawcy, podlegają ochronie prawnej i stanowią własność Usługodawcy lub są wykorzystywane za zgodą
+        uprawnionych. Kopiowanie, rozpowszechnianie lub inne wykorzystywanie tych treści bez zgody Usługodawcy jest
+        niedozwolone, z wyjątkiem dozwolonego użytku przewidzianego przepisami prawa.
+      </p>
+
+      <h2>§ 8. Reklamacje</h2>
+      <ul>
+        <li>Reklamacje dotyczące funkcjonowania Serwisu lub świadczonych usług można zgłaszać na adres e-mail <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</li>
+        <li>Reklamacja powinna zawierać dane umożliwiające kontakt oraz opis zgłaszanych zastrzeżeń.</li>
+        <li>Usługodawca rozpatruje reklamację w terminie do 14 dni od jej otrzymania i informuje o sposobie jej rozpatrzenia na podany adres e-mail.</li>
+      </ul>
+
+      <h2>§ 9. Dane osobowe</h2>
+      <p>
+        Zasady przetwarzania danych osobowych Użytkowników oraz wykorzystywania plików cookies określa
+        <a href="/polityka-prywatnosci/">Polityka prywatności</a>.
+      </p>
+
+      <h2>§ 10. Postanowienia końcowe</h2>
+      <ul>
+        <li>W sprawach nieuregulowanych niniejszym regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego oraz ustawy o świadczeniu usług drogą elektroniczną.</li>
+        <li>Usługodawca zastrzega sobie prawo do zmiany regulaminu z ważnych przyczyn. Zmiany wchodzą w życie z chwilą opublikowania zaktualizowanego regulaminu w Serwisie.</li>
+        <li>Regulamin obowiązuje od dnia {effectiveDate}</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

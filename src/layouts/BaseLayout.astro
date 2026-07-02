@@ -1,0 +1,188 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+
+interface Breadcrumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: Breadcrumb[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  speakable?: string[];
+  preloadImage?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  canonical,
+  noindex,
+  type,
+  schema,
+  breadcrumbs,
+  publishedTime,
+  modifiedTime,
+  speakable,
+  preloadImage,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0B0D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="alternate" type="application/rss+xml" title="AS‑LAB Blog" href="/blog/rss.xml" />
+
+    <link rel="preconnect" href="https://as-lab.pl" crossorigin />
+    <link rel="dns-prefetch" href="https://as-lab.pl" />
+
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+    <SEO {title} {description} {image} {canonical} {noindex} {type} {schema} {breadcrumbs} {publishedTime} {modifiedTime} {speakable} />
+
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--color-amber)] focus:text-[var(--color-bg)] focus:rounded-md focus:font-medium">
+      Przejdź do treści
+    </a>
+    <Header />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Globalna warstwa animacji - scroll reveal + count-up.
+      // Zero inline-styli w HTML (CSSOM transitionDelay jest CSP-safe).
+      // Animujemy tylko elementy PONIŻEJ zgięcia => brak migotania, dobre LCP.
+      function initMotion() {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return; // pełen szacunek dla preferencji - zero animacji
+
+        const vh = window.innerHeight || 800;
+
+        // --- 1. Scroll reveal ---
+        const candidates = document.querySelectorAll('.reveal, [data-reveal], .card, .stat-tile, .eyebrow');
+        const below = [];
+        candidates.forEach((el) => {
+          if (el.closest('header, footer')) return;
+          if (el.classList.contains('in-view')) return;
+          if (el.getBoundingClientRect().top < vh * 0.92) return; // nad zgięciem -> bez animacji
+          below.push(el);
+        });
+
+        below.forEach((el) => {
+          el.classList.add('reveal');
+          const parent = el.parentElement;
+          if (parent) {
+            const sibs = Array.prototype.filter.call(parent.children, (c) => below.indexOf(c) !== -1);
+            const idx = sibs.indexOf(el);
+            if (idx > 0) el.style.transitionDelay = Math.min(idx * 70, 350) + 'ms';
+          }
+        });
+
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        below.forEach((el) => io.observe(el));
+
+        // --- 2. Count-up w kafelkach statystyk ---
+        const counters = document.querySelectorAll('.stat-tile-value, [data-countup]');
+        if (counters.length) {
+          const run = (el) => {
+            const raw = (el.textContent || '').trim();
+            const m = raw.match(/^(\d+)([+%]?)$/); // tylko proste liczby (zakresy "300-400" pomijamy)
+            if (!m) return;
+            const target = parseInt(m[1], 10);
+            const suffix = m[2] || '';
+            if (target === 0) return;
+            const dur = 1200;
+            let start = null;
+            const step = (ts) => {
+              if (start === null) start = ts;
+              const p = Math.min((ts - start) / dur, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(eased * target) + suffix;
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = target + suffix;
+            };
+            requestAnimationFrame(step);
+          };
+          const cio = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run(entry.target);
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.6 });
+          counters.forEach((el) => cio.observe(el));
+        }
+      }
+
+      document.addEventListener('astro:page-load', initMotion);
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .focus\:not-sr-only:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* View Transitions API smooth crossfade */
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.25s;
+  }
+</style>

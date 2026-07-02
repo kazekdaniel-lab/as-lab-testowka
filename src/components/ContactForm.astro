@@ -1,0 +1,107 @@
+---
+interface Props {
+  action?: string;
+}
+const { action = '/contact.php' } = Astro.props;
+---
+<form id="contact-form" action={action} method="POST" class="card p-6 lg:p-8 space-y-5" novalidate>
+  <div class="grid sm:grid-cols-2 gap-5">
+    <div>
+      <label for="name" class="block text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+        Imię i nazwisko <span class="text-[var(--color-amber)]">*</span>
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        class="w-full px-4 py-2.5 bg-[var(--color-bg)] border border-[var(--color-border-strong)] rounded-md text-[var(--color-text)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-2 focus:ring-[var(--color-cyan)]/20 transition-all"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+        E-mail <span class="text-[var(--color-amber)]">*</span>
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        class="w-full px-4 py-2.5 bg-[var(--color-bg)] border border-[var(--color-border-strong)] rounded-md text-[var(--color-text)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-2 focus:ring-[var(--color-cyan)]/20 transition-all"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="company" class="block text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+      Firma (opcjonalnie)
+    </label>
+    <input
+      id="company"
+      name="company"
+      type="text"
+      autocomplete="organization"
+      class="w-full px-4 py-2.5 bg-[var(--color-bg)] border border-[var(--color-border-strong)] rounded-md text-[var(--color-text)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-2 focus:ring-[var(--color-cyan)]/20 transition-all"
+    />
+  </div>
+
+  <div>
+    <label for="message" class="block text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+      Wiadomość
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      class="w-full px-4 py-2.5 bg-[var(--color-bg)] border border-[var(--color-border-strong)] rounded-md text-[var(--color-text)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-2 focus:ring-[var(--color-cyan)]/20 transition-all resize-none"
+    ></textarea>
+  </div>
+
+  <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
+
+  <label class="flex items-start gap-3 text-sm text-[var(--color-text-muted)]">
+    <input type="checkbox" name="consent" required class="mt-0.5 w-4 h-4 rounded border-[var(--color-border-strong)] bg-[var(--color-bg)] accent-[var(--color-amber)]" />
+    <span>
+      Zapoznałem się z informacjami dotyczącymi przetwarzania danych osobowych
+      (<a href="/polityka-prywatnosci/" class="text-[var(--color-cyan)]">Polityka prywatności</a>)
+      i akceptuję ich warunki. <span class="text-[var(--color-amber)]">*</span>
+    </span>
+  </label>
+
+  <div class="flex items-center justify-between pt-2">
+    <button type="submit" class="btn btn-primary">
+      Wyślij wiadomość
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
+    <p id="form-status" class="text-sm" role="status" aria-live="polite"></p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Wysyłanie...';
+      status.style.color = 'var(--color-text-muted)';
+      try {
+        const data = new FormData(form);
+        if (data.get('_honeypot')) return;
+        const res = await fetch(form.action, { method: 'POST', body: data });
+        if (res.ok) {
+          status.textContent = '✓ Dziękujemy, odezwiemy się wkrótce.';
+          status.style.color = 'var(--color-cyan)';
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        status.textContent = '✗ Błąd wysyłki. Zadzwoń do nas bezpośrednio.';
+        status.style.color = '#ef4444';
+      }
+    });
+  }
+</script>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import SpecsTable from '../components/SpecsTable.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import zestaw from '../assets/products/Zestaw-do-katalizatorow-metalowych.JPG';
+
+const title = 'Urządzenia do mielenia katalizatorów - młyny, kruszarki | AS‑LAB';
+const description = 'W ofercie naszego sklepu znajdą Państwo szeroki wybór urządzeń do mielenia katalizatorów: młyny kulowe, kruszarki młotkowe, młynek wibracyjny MW-200 oraz kompletne zestawy.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Mielenie katalizatorów', href: '/urzadzenia-do-mielenia-katalizatorow/' }];
+
+const schema = {
+  '@type': 'ProductGroup',
+  name: 'Urządzenia do mielenia katalizatorów',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="Recykling cennych surowców"
+    title="Mielenie"
+    highlight="katalizatorów"
+    description="Mielenie katalizatorów to kluczowy etap ich recyklingu - korzystny dla środowiska i pozwalający odzyskać trudno dostępne metale szlachetne. Oferujemy młyny kulowe, kruszarki młotkowe, młynki wibracyjne MW-200 oraz kompletne zestawy."
+    primaryCta={{ href: '/kontakt/', label: 'Skonfiguruj linię' }}
+    secondaryCta={{ href: '#zestaw', label: 'Zobacz zestaw' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 prose-dark">
+        <h2>Młyny kulowe</h2>
+        <p>
+          Głównym zastosowaniem młynów kulowych jest mielenie <strong>katalizatorów samochodowych
+          podlegających recyklingowi</strong>. Proces ten pozwala uzyskać bardzo drobny proszek,
+          umożliwiający ponowne wykorzystanie metali szlachetnych.
+        </p>
+        <p>
+          Młyny kulowe posiadają kule o różnych średnicach, wykonane z twardych i wytrzymałych
+          materiałów. Podczas obrotu bębna siła odśrodkowa podnosi kulki wraz z mielonym materiałem,
+          a następnie opadają one rozdrabniając materiał. Docelowa wielkość rozdrobnienia zależy od
+          czasu, prędkości mielenia, wielkości materiału i rodzaju młyna.
+        </p>
+
+        <h2>Młynek wibracyjny MW-200</h2>
+        <p>
+          Laboratoryjny młynek wibracyjny MW-200 służy do mielenia materiałów suchych, kruchych,
+          średnio oraz bardzo twardych (do 9 stopni w skali Mohsa). Idealny do precyzyjnego mielenia
+          katalizatorów oraz ceramicznych monolitów.
+        </p>
+
+        <h2>Kruszarka młotkowa</h2>
+        <p>
+          Kruszarka młotkowa to urządzenie udarowe służące do wstępnego rozdrabniania katalizatorów
+          ceramicznych. Wyposażona w wymienne młotki ze stopów wysokiej twardości oraz sito separujące.
+        </p>
+      </div>
+
+      <aside class="card p-6 sticky top-24 h-fit">
+        <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-cyan)] mb-4">
+          Po co recykling?
+        </div>
+        <h3 class="text-lg font-semibold mb-4">Odzysk metali szlachetnych</h3>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          Katalizatory samochodowe zawierają platynę, pallad i rod. Po zmieleniu monolitu ceramicznego
+          możliwy jest precyzyjny odzysk tych pierwiastków.
+        </p>
+        <div class="divider-line my-4"></div>
+        <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+          <li class="flex gap-2"><span class="text-[var(--color-amber)]">›</span>Platyna (Pt)</li>
+          <li class="flex gap-2"><span class="text-[var(--color-amber)]">›</span>Pallad (Pd)</li>
+          <li class="flex gap-2"><span class="text-[var(--color-amber)]">›</span>Rod (Rh)</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="zestaw" class="container-page py-12 scroll-mt-20">
+    <article class="card p-8 lg:p-12">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge badge-amber mb-4">Nowość</span>
+          <h2 class="text-3xl mb-4">Zestaw do katalizatorów metalowych</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed mb-4">
+            Kompletna linia do rozdrabniania i kontrolnego odsiewania materiału z katalizatorów
+            metalowych. Składa się z <strong>wytrzymałej kruszarki wirnikowej udarowej</strong> oraz
+            <strong>1-pokładowego przesiewacza</strong>.
+          </p>
+          <p class="text-[var(--color-text-muted)] leading-relaxed mb-6">
+            Kruszarka wyposażona w szybkoobrotowy wirnik z młotkami z twardych stopów, sito separujące
+            oraz bezpieczny zasyp z systemem odprowadzania produktu. Możliwe podłączenie instalacji
+            odpylającej. Przesiewacz pracuje „na sucho", precyzyjny dobór frakcji dzięki wymiennym
+            sitom. Dostarczany z ramą, okablowaniem i układem sterowania.
+          </p>
+          <SpecsTable
+            specs={[
+              { label: 'Skład', value: 'Kruszarka + przesiewacz' },
+              { label: 'Typ kruszarki', value: 'Wirnikowa udarowa' },
+              { label: 'Materiał młotków', value: 'Stopy hartowane' },
+              { label: 'Tryb pracy', value: 'Na sucho' },
+              { label: 'Konfiguracja', value: 'Indywidualna' },
+            ]}
+          />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-lg bg-[var(--color-bg)]">
+          <Image
+            src={zestaw}
+            alt="Zestaw do katalizatorów metalowych - kruszarka wirnikowa udarowa i przesiewacz"
+            widths={[600, 1000]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <CTA
+    title="Kompletne rozwiązanie pod recykling"
+    description="Skonfigurujemy linię pod Państwa wolumen i specyfikę katalizatorów. Indywidualne ustalenie elementów zasypowych i dozujących."
+  />
+</BaseLayout>

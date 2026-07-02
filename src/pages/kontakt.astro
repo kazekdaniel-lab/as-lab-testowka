@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { siteConfig } from '../lib/nav';
+
+const title = 'AS Lab kontakt - Skontaktuj się z nami!';
+const description = 'Masz pytania? Potrzebujesz pomocy? Skontaktuj się z nami, wybierając dogodną dla siebie metodę!';
+
+const breadcrumbs = [{ name: 'Kontakt', href: '/kontakt/' }];
+
+const schema = {
+  '@type': 'ContactPage',
+  name: title,
+  description,
+  url: 'https://as-lab.pl/kontakt/',
+  mainEntity: { '@id': 'https://as-lab.pl/#organization' },
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page py-20 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="w-1 h-1 rounded-full bg-[var(--color-amber)]"></span>
+          <span class="text-xs font-mono uppercase tracking-[0.2em] text-[var(--color-amber)]">Kontakt</span>
+        </div>
+        <h1 class="mb-6">Skontaktuj się <span class="text-gradient-amber">z nami</span></h1>
+        <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-10 max-w-lg">
+          Jesteśmy producentem różnego rodzaju urządzeń i akcesoriów laboratoryjnych.
+          Wybierz dogodną metodę kontaktu - oddzwonimy lub odpiszemy w ciągu 24 godzin.
+        </p>
+
+        <div class="space-y-6">
+          <div class="card p-6">
+            <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-3">
+              Dane firmy
+            </div>
+            <div class="text-[var(--color-text)] font-semibold mb-2">{siteConfig.legalName}</div>
+            <address class="not-italic text-sm text-[var(--color-text-muted)] leading-relaxed">
+              {siteConfig.address.street}<br />
+              {siteConfig.address.postalCode} {siteConfig.address.locality}
+            </address>
+          </div>
+
+          <div class="card p-6">
+            <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-3">
+              Telefon
+            </div>
+            <a href={`tel:${siteConfig.phoneClean}`} class="block text-2xl font-mono font-semibold text-[var(--color-amber)] hover:text-[var(--color-amber-hover)]">
+              {siteConfig.phone}
+            </a>
+            <p class="text-xs text-[var(--color-text-dim)] mt-2">Pn-Pt 8:00-16:00</p>
+          </div>
+
+          <div class="card p-6">
+            <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-3">
+              E-mail
+            </div>
+            <a href={`mailto:${siteConfig.email}`} class="block text-lg font-mono text-[var(--color-cyan)] hover:text-[var(--color-cyan-hover)] break-all">
+              {siteConfig.email}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const breadcrumbs = [{ name: 'Blog', href: '/blog/' }];
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const title = 'Blog | AS‑LAB';
+const description = 'Wiedza i porady ze świata sprzętu laboratoryjnego - mielenie, przesiewanie, recykling katalizatorów, normy i procesy badawcze.';
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout {title} {description} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page py-20">
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-2 mb-3">
+        <span class="w-1 h-1 rounded-full bg-[var(--color-cyan)]"></span>
+        <span class="text-xs font-mono uppercase tracking-[0.2em] text-[var(--color-cyan)]">Aktualności</span>
+      </div>
+      <h1>Blog AS‑LAB</h1>
+      <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl">
+        Wiedza i porady ze świata sprzętu laboratoryjnego - mielenie, przesiewanie, recykling
+        katalizatorów, normy i procesy badawcze.
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <div class="card p-12 text-center">
+        <p class="text-[var(--color-text-muted)]">Wkrótce pojawią się tutaj nasze pierwsze wpisy.</p>
+      </div>
+    ) : (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}/`} class="card card-hover overflow-hidden flex flex-col group">
+            {post.data.hero && (
+              <div class="aspect-[16/10] overflow-hidden bg-[var(--color-bg)]">
+                <img
+                  src={post.data.hero}
+                  alt={post.data.heroAlt ?? post.data.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            )}
+            <div class="p-6 flex-1 flex flex-col">
+              <time class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+                {formatDate(post.data.date)}
+              </time>
+              <h2 class="text-lg font-semibold leading-snug mb-2 text-[var(--color-text)] group-hover:text-[var(--color-cyan)] transition-colors">
+                {post.data.title}
+              </h2>
+              {post.data.description && (
+                <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">
+                  {post.data.description}
+                </p>
+              )}
+              <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-cyan)] opacity-0 group-hover:opacity-100 transition-opacity">
+                Czytaj dalej
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

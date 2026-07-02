@@ -1,0 +1,51 @@
+---
+interface Props {
+  name: string;
+  category?: string;
+  class?: string;
+}
+const { name, category, class: className = '' } = Astro.props;
+// Deterministic angle/icon based on name hash.
+// Kąt kwantyzowany do 12 koszyków (co 30°) -> klasa CSS zamiast inline style,
+// żeby CSP pozostało restrykcyjne (bez 'unsafe-inline' dla atrybutów style).
+const hash = [...name].reduce((a, c) => a + c.charCodeAt(0), 0);
+const bucket = Math.floor(((hash * 17) % 360) / 30); // 0..11
+const initial = (name.match(/[A-ZŁŚĆŻŹ]/g)?.[0] || name[0] || 'M').toUpperCase();
+---
+<div class={`relative w-full h-full overflow-hidden bg-[var(--color-surface-2)] ${className}`} aria-label={`Placeholder zdjęcia: ${name}`}>
+  <div class={`absolute inset-0 opacity-30 pl-grad pl-grad-${bucket}`}></div>
+  <div class="absolute inset-0 grid-bg-bordo"></div>
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+    <div class="w-16 h-16 rounded-md border border-[var(--color-border-strong)] flex items-center justify-center bg-[var(--color-bg)]/60 backdrop-blur-sm">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9h18M9 3v18"/>
+        <circle cx="14.5" cy="14.5" r="2.5"/>
+      </svg>
+    </div>
+    <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-dim)]">
+      Zdjęcie wkrótce
+    </div>
+    {category && <div class="text-xs text-[var(--color-text-muted)] max-w-[180px]">{category}</div>}
+  </div>
+</div>
+
+<style>
+  .pl-grad {
+    --c1: var(--color-bordo-deep);
+    --c2: var(--color-surface-2);
+    --c3: var(--color-bordo-dim);
+  }
+  .pl-grad-0  { background: conic-gradient(from 0deg   at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-1  { background: conic-gradient(from 30deg  at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-2  { background: conic-gradient(from 60deg  at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-3  { background: conic-gradient(from 90deg  at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-4  { background: conic-gradient(from 120deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-5  { background: conic-gradient(from 150deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-6  { background: conic-gradient(from 180deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-7  { background: conic-gradient(from 210deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-8  { background: conic-gradient(from 240deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-9  { background: conic-gradient(from 270deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-10 { background: conic-gradient(from 300deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+  .pl-grad-11 { background: conic-gradient(from 330deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c2)); }
+</style>

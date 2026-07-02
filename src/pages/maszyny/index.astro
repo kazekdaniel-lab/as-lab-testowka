@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import MachineCard from '../../components/MachineCard.astro';
+import { getCollection } from 'astro:content';
+import { categories, industries } from '../../lib/categories';
+
+const machines = (await getCollection('machines', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const title = 'Katalog maszyn i urządzeń laboratoryjnych | AS‑LAB';
+const description = 'Pełny katalog produkowanych maszyn AS‑LAB - kruszarki, młyny, sita analityczne, przesiewacze, gniotowniki, urządzenia do recyklingu katalizatorów. Polski producent, zespół z 20+ lat doświadczenia.';
+
+const breadcrumbs = [{ name: 'Katalog maszyn', href: '/maszyny/' }];
+
+// Grupowanie maszyn po kategorii
+const byCategory = Object.entries(categories).map(([key, cat]) => {
+  const items = machines.filter((m) => m.data.category === key);
+  return { key, cat, items };
+}).filter((g) => g.items.length > 0);
+
+const featuredMachines = machines.filter((m) => m.data.featured);
+
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    '@id': 'https://as-lab.pl/maszyny/#collection',
+    name: 'Katalog maszyn AS‑LAB',
+    description,
+    hasPart: machines.map((m) => ({
+      '@type': 'Product',
+      name: m.data.name,
+      url: `https://as-lab.pl/maszyny/${m.id}/`,
+      brand: { '@id': 'https://as-lab.pl/#organization' },
+    })),
+  },
+  {
+    '@type': 'ItemList',
+    numberOfItems: machines.length,
+    itemListElement: machines.map((m, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://as-lab.pl/maszyny/${m.id}/`,
+      name: m.data.name,
+    })),
+  },
+];
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pt-8 pb-12">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Katalog 2026 · {machines.length} pozycji</div>
+      <h1 class="mb-6">Maszyny i urządzenia <span class="text-gradient-bordo">AS‑LAB</span></h1>
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Pełna oferta urządzeń produkowanych w warsztacie w Łazach k. Bochni. Każda maszyna ma osobną
+        kartę ze specyfikacją techniczną, normami zgodności i zastosowaniami. Filtruj po kategorii
+        lub branży klienta.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-12">
+    <div class="card p-5 lg:p-6">
+      <div class="grid lg:grid-cols-[auto_1fr] gap-6 items-start">
+        <div class="lg:w-48">
+          <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-3">
+            Skok do kategorii
+          </div>
+          <div class="font-mono text-xs text-[var(--color-text-muted)]">
+            {byCategory.length} kategorii · {machines.length} maszyn
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {byCategory.map((g) => (
+            <a
+              href={`#kategoria-${g.key}`}
+              class="px-3 py-1.5 rounded text-xs font-medium border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-bordo)] hover:text-[var(--color-peach)] transition-colors"
+            >
+              {g.cat.label} <span class="opacity-60">({g.items.length})</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {featuredMachines.length > 0 && (
+    <section class="container-page pb-16">
+      <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
+        <div>
+          <div class="eyebrow mb-3">Wyróżnione modele</div>
+          <h2>Najczęściej zamawiane</h2>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {featuredMachines.map((m) => <MachineCard machine={m} />)}
+      </div>
+    </section>
+  )}
+
+  <div class="section-divider mb-16"></div>
+
+  {byCategory.map((g) => (
+    <section id={`kategoria-${g.key}`} class="container-page pb-16 scroll-mt-20">
+      <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
+        <div>
+          <div class="eyebrow mb-3">Kategoria · {g.items.length} {g.items.length === 1 ? 'pozycja' : g.items.length < 5 ? 'pozycje' : 'pozycji'}</div>
+          <h2>{g.cat.longLabel}</h2>
+          <p class="mt-2 text-[var(--color-text-muted)] max-w-2xl">{g.cat.description}</p>
+        </div>
+        <a href={g.cat.path} class="btn btn-ghost text-sm">Strona kategorii →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {g.items.map((m) => <MachineCard machine={m} />)}
+      </div>
+    </section>
+  ))}
+
+  <section class="container-page py-16">
+    <div class="card p-8 lg:p-12 grid-bg-bordo">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="eyebrow mb-3">Brakuje czegoś?</div>
+          <h2 class="mb-4">Realizujemy <span class="text-gradient-peach">nietypowe zamówienia</span></h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Nasza zdolność do dostosowywania się do nietypowych zadań obejmuje zarówno projektowanie,
+            jak i szybkie wdrażanie innowacyjnych rozwiązań. Sondy, cylindry, kadzie kwasoodporne,
+            sita o niestandardowych wymiarach - opisz potrzebę, przygotujemy koncepcję.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/nietypowe-zamowienia/" class="btn btn-primary">Nietypowe zamówienia</a>
+            <a href="/kontakt/" class="btn btn-ghost">Skontaktuj się</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          {industries.zbrojeniowka && [
+            ['Doświadczenie', '20+', 'lat zespołu'],
+            ['Lokalizacja', 'Łazy', 'k. Bochni'],
+            ['Obszar', 'PL', 'cała Polska + eksport'],
+            ['Realizacje', '300+', 'projektów'],
+          ].map(([k, v, sub]) => (
+            <div class="stat-tile">
+              <div class="text-xs uppercase tracking-wider text-[var(--color-text-dim)] mb-2">{k}</div>
+              <div class="font-mono text-2xl text-[var(--color-peach)]">{v}</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">{sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

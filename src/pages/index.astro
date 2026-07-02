@@ -1,0 +1,395 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import MachineCard from '../components/MachineCard.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { categories, industries } from '../lib/categories';
+
+import r1 from '../assets/realizations/r1.jpeg';
+import r2 from '../assets/realizations/r2.jpeg';
+import r3 from '../assets/realizations/r3.jpeg';
+import r4 from '../assets/realizations/r4.jpeg';
+import r6 from '../assets/realizations/r6.jpeg';
+import r7 from '../assets/realizations/r7.jpeg';
+import r8 from '../assets/realizations/r8.jpeg';
+import r9 from '../assets/realizations/r9.jpeg';
+import sitaNietypowe from '../assets/realizations/sita-nietypowe.jpeg';
+import warsztat from '../assets/products/serwis-warsztat.png';
+
+const title = 'AS‑LAB - Polski producent maszyn dla przemysłu, kopalń i laboratoriów';
+const description = 'Projektujemy, konstruujemy i produkujemy kruszarki, młyny, sita analityczne, przesiewacze, gniotowniki i urządzenia specjalistyczne. Polski producent z Łazów k. Bochni - zespół z 20+ lat doświadczenia, 300-400 zrealizowanych projektów, eksport. Serwis na terenie całej Polski.';
+
+const allMachines = (await getCollection('machines', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = allMachines.filter((m) => m.data.featured);
+
+const sortedIndustries = Object.entries(industries).sort(([, a], [, b]) => a.priority - b.priority);
+
+const process = [
+  { n: '01', title: 'Projekt CAD', desc: 'Dokumentacja techniczna, modelowanie 3D, kalkulacja obciążeń.', time: '3-10 dni' },
+  { n: '02', title: 'Konstrukcja', desc: 'Cięcie, spawanie, obróbka CNC, hartowanie. Wszystko w warsztacie.', time: '1-3 tyg.' },
+  { n: '03', title: 'Produkcja i montaż', desc: 'Montaż mechaniczny, automatyka, testy, malowanie proszkowe.', time: '2-5 tyg.' },
+  { n: '04', title: 'Wdrożenie', desc: 'Transport, pierwsze uruchomienie, szkolenie operatorów, dokumentacja techniczna.', time: '1-3 dni' },
+];
+
+const norms = [
+  { code: 'PN-ISO 3310-1:2000', desc: 'Sita analityczne - tkaniny z drutu' },
+  { code: 'PN-ISO 3310-2:2000', desc: 'Sita analityczne - sita perforowane' },
+  { code: 'PN-C-04310:1984', desc: 'Przesiewacze posuwisto-zwrotne' },
+  { code: 'PN-ISO 728:1999', desc: 'Analiza sitowa koksu' },
+  { code: 'EN 1097-2', desc: 'Bęben Los Angeles - kruszywa' },
+  { code: 'EN 12697-43', desc: 'Bęben Los Angeles - bitum' },
+  { code: 'ASTM C131', desc: 'Test ścierania kruszyw USA' },
+];
+
+const faq = [
+  { q: 'Czy oferujecie demonstrację urządzenia przed zakupem?', a: 'Tak. Organizujemy demonstracje naszych młynków, kruszarek i sit bezpośrednio u Państwa w laboratorium. Jesteśmy elastyczni w ustalaniu terminu - prosimy o kontakt w celu umówienia wizyty.' },
+  { q: 'Z jakimi normami zgodne są Wasze urządzenia?', a: 'Projektujemy zgodnie z obowiązującymi normami branżowymi: sita analityczne - PN-ISO 3310-1/2:2000; przesiewacze posuwisto-zwrotne - PN-C-04310:1984 oraz PN-ISO 728:1999; bęben Los Angeles - EN 1097-2, EN 12697-43, ASTM C131. Dokumentację techniczną dostarczamy z każdym urządzeniem.' },
+  { q: 'Jaki obszar pokrywacie serwisem?', a: 'Serwis mobilny obsługujemy na terenie całej Polski, ze szczególnym uwzględnieniem województw śląskiego, dolnośląskiego, lubuskiego i małopolskiego. Większe remonty wykonujemy w naszym warsztacie w Łazach k. Bochni.' },
+  { q: 'Czy wykonujecie urządzenia poza standardową ofertą?', a: 'Tak - nietypowe zamówienia to istotna część naszej działalności. Realizujemy sondy, cylindry pomiarowe, kwasoodporne kadzie, sita o niestandardowych wymiarach, urządzenia do mas pirotechnicznych i inne na specyfikację klienta.' },
+  { q: 'Czy współpracujecie z sektorem zbrojeniowym?', a: 'Tak. Produkujemy specjalistyczne urządzenia dla sektora obronnego - gniotowniki do mas pirotechnicznych, stoły do mycia materiałów przeciwwybuchowych, kadzie z atestami. Realizacja zgodnie z wymogami branżowymi.' },
+  { q: 'Ile trwa cały proces - od zapytania do dostawy?', a: 'Konsultacja techniczna do 24h, wycena 2-5 dni, produkcja 4-10 tygodni w zależności od stopnia skomplikowania urządzenia. Standardowe modele mogą być dostępne szybciej.' },
+];
+
+const realizationsGrid = [r3, r1, r2, r4, r6, r7, r8, r9, sitaNietypowe];
+
+const schema = [
+  {
+    '@type': 'WebSite',
+    '@id': 'https://as-lab.pl/#website',
+    url: 'https://as-lab.pl/',
+    name: 'AS‑LAB',
+    publisher: { '@id': 'https://as-lab.pl/#organization' },
+    inLanguage: 'pl-PL',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: 'https://as-lab.pl/?s={search_term_string}' },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@type': 'HowTo',
+    name: 'Proces produkcji maszyn AS‑LAB',
+    description: 'Czterostopniowy proces tworzenia maszyn laboratoryjnych - projekt CAD, konstrukcja, produkcja, wdrożenie.',
+    totalTime: 'P10W',
+    step: process.map((p, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: p.title,
+      text: p.desc,
+    })),
+  },
+];
+
+const speakable = ['h1', '.hero-description', '#oferta h2', '#faq h3'];
+---
+<BaseLayout {title} {description} {schema} {speakable}>
+  <Hero
+    eyebrow="Polski producent · 20+ lat doświadczenia · Warsztat Łazy k. Bochni"
+    title="Maszyny dla przemysłu,"
+    highlight="kopalń i laboratoriów"
+    description="Projektujemy, konstruujemy i produkujemy kruszarki, młyny, sita analityczne i przesiewacze. Pracujemy z firmami każdej wielkości - od jednoosobowych warsztatów serwisowych po wielkie korporacje. Realizujemy zamówienia dla sektora zbrojeniowego, recyklingu katalizatorów, kopalń i laboratoriów."
+    primaryCta={{ href: '/maszyny/', label: 'Katalog maszyn' }}
+    secondaryCta={{ href: '/kontakt/', label: 'Wycena w 24h' }}
+    metrics={[
+      { value: '20+', label: 'Lat doświadczenia' },
+      { value: '300+', label: 'Zrealizowanych projektów' },
+      { value: '7', label: 'Krajów eksportu' },
+      { value: 'PL', label: 'Cała Polska' },
+    ]}
+  />
+
+  <section class="container-page py-6 lg:py-10">
+    <div class="card p-5 lg:p-6">
+      <div class="grid lg:grid-cols-[auto_1fr] gap-6 items-center">
+        <div class="lg:w-44">
+          <div class="text-xs font-mono uppercase tracking-[0.15em] text-[var(--color-text-dim)] mb-1.5">
+            Pracujemy dla
+          </div>
+          <div class="text-sm text-[var(--color-text-muted)]">8 sektorów przemysłu</div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {sortedIndustries.slice(0, 6).map((entry) => {
+            const [, ind] = entry;
+            return (
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded bg-[var(--color-bg)] border border-[var(--color-border-strong)] flex items-center justify-center flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={ind.icon}/>
+                  </svg>
+                </div>
+                <span class="text-xs text-[var(--color-text)] leading-tight">{ind.shortLabel}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="oferta" class="container-page py-16 lg:py-20 scroll-mt-20">
+    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+      <div>
+        <div class="eyebrow mb-3">Wyróżnione maszyny</div>
+        <h2>Najczęściej zamawiane modele</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+          {featured.length} maszyn z naszego katalogu które najczęściej trafiają do klientów -
+          recykling katalizatorów, analizy sitowe, sektor zbrojeniowy.
+        </p>
+      </div>
+      <a href="/maszyny/" class="btn btn-ghost text-sm">Cały katalog ({allMachines.length}) →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {featured.map((m) => <MachineCard machine={m} />)}
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="aspect-[4/3] overflow-hidden rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] order-last lg:order-first">
+        <Image
+          src={warsztat}
+          alt="Warsztat AS‑LAB w Łazach k. Bochni"
+          widths={[600, 1000, 1400]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div>
+        <div class="eyebrow mb-3">Polski producent</div>
+        <h2 class="mb-6">Cały proces <span class="text-gradient-bordo">u siebie</span></h2>
+        <p class="text-[var(--color-text-muted)] leading-relaxed mb-6">
+          Samodzielnie realizujemy każdy etap powstawania maszyny - od projektu CAD, przez
+          konstrukcję, produkcję warsztatową, po wdrożenie u klienta. Bez pośredników,
+          podwykonawców, importów - z doświadczeniem zespołu sięgającym ponad 20 lat.
+        </p>
+        <ul class="space-y-3 mb-8 text-[var(--color-text-muted)]">
+          <li class="flex items-start gap-3">
+            <span class="font-mono text-xs text-[var(--color-peach)] mt-1">01</span>
+            <span><strong class="text-[var(--color-text)]">Pełna kontrola jakości</strong> - znamy każdy element konstrukcji</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-mono text-xs text-[var(--color-peach)] mt-1">02</span>
+            <span><strong class="text-[var(--color-text)]">Krótsze terminy</strong> - brak pośredników, decyzje natychmiast</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-mono text-xs text-[var(--color-peach)] mt-1">03</span>
+            <span><strong class="text-[var(--color-text)]">Modyfikacje pod klienta</strong> - urządzenie pod specyfikę próbki, materiału, hali</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-mono text-xs text-[var(--color-peach)] mt-1">04</span>
+            <span><strong class="text-[var(--color-text)]">Serwis pogwarancyjny</strong> - znamy każdą część zamienną</span>
+          </li>
+        </ul>
+        <a href="/proces-produkcji/" class="btn btn-primary">
+          Zobacz nasz proces produkcji
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16 lg:py-20">
+    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+      <div>
+        <div class="eyebrow mb-3">Realizacje</div>
+        <h2>100+ wdrożeń w 8 branżach</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+          Linie recyklingu katalizatorów, kruszarki dla kopalń, sita dla laboratoriów,
+          urządzenia specjalistyczne dla sektora zbrojeniowego.
+        </p>
+      </div>
+      <a href="/realizacje/" class="btn btn-ghost text-sm">Zobacz wszystkie →</a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      {realizationsGrid.map((r, i) => (
+        <div class={`overflow-hidden rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] ${i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'}`}>
+          <Image
+            src={r}
+            alt={`Realizacja AS‑LAB ${i + 1}`}
+            widths={[300, 500, 700]}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16 lg:py-20">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-3">Zasięg · cała Polska + eksport</div>
+      <h2>Polski producent - <span class="text-gradient-bordo">dostawy w całym kraju i za granicę</span></h2>
+      <p class="mt-4 text-[var(--color-text-muted)] text-lg leading-relaxed">
+        Maszyny projektujemy i budujemy w całości w Łazach k. Bochni. Dostarczamy do klientów
+        w całej Polsce oraz na eksport (Europa, Bliski Wschód). Serwis mobilny dojeżdża do
+        klienta, a większe remonty wykonujemy stacjonarnie w naszym warsztacie.
+      </p>
+      <div class="mt-6">
+        <a href="/serwis-maszyn/" class="btn btn-ghost text-sm">Serwis i obszar dostaw →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="card p-8 lg:p-12 grid-bg-bordo">
+      <div class="mb-10">
+        <div class="eyebrow mb-3">Dla kogo pracujemy</div>
+        <h2>Od jednoosobowych warsztatów <br /><span class="text-gradient-bordo">po wielkie korporacje</span></h2>
+        <p class="mt-4 text-[var(--color-text-muted)] max-w-2xl text-lg leading-relaxed">
+          Nasi klienci to firmy każdej wielkości. Nie zamykamy się na giganty - dla mniejszych zakładów
+          serwisowych, lokalnych laboratoriów czy pojedynczych warsztatów też wykonujemy maszyny i&nbsp;serwis.
+          Skala zlecenia nie ma znaczenia - liczy się techniczne dopasowanie i&nbsp;jakość.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { icon: 'M3 21V9l9-6 9 6v12', label: 'Duże zakłady przemysłowe', desc: 'Kopalnie, huty, koncerny chemiczne, fabryki motoryzacyjne - firmy potrzebujące maszyn próbnych, serwisu i części zamiennych w skali przemysłowej.' },
+          { icon: 'M9 3v8l-4 6a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-6V3M8 3h8', label: 'Laboratoria i uczelnie', desc: 'Politechniki, uniwersytety, prywatne laboratoria analityczne, działy R&D zakładów przemysłowych - dla nich sita PN-ISO, młynki precyzyjne, akcesoria.' },
+          { icon: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z', label: 'Średnie zakłady i serwis', desc: 'Cementownie, kamieniołomy, zakłady przeróbcze, firmy serwisowe maszyn górniczych, producenci kontraktowi - zlecają nam pojedyncze maszyny i remonty.' },
+          { icon: 'M3 12l5-5 5 5 5-5 5 5M3 17l5-5 5 5 5-5 5 5', label: 'Warsztaty i indywidualni klienci', desc: 'Mniejsze warsztaty serwisowe, jednoosobowe działalności techniczne, lokalni producenci - również dla nich wykonujemy maszyny i akcesoria.' },
+        ].map((g) => (
+          <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+            <div class="w-10 h-10 rounded-md bg-[var(--color-bg)] border border-[var(--color-border-strong)] flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d={g.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-base font-semibold mb-2 text-[var(--color-text)]">{g.label}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{g.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16 lg:py-20">
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-12 mb-10">
+      <div>
+        <div class="eyebrow mb-3">Kategorie</div>
+        <h2>9 kategorii sprzętu</h2>
+      </div>
+      <p class="text-[var(--color-text-muted)] leading-relaxed text-lg">
+        Od wstępnego rozdrabniania po końcową analizę sitową - kompletny łańcuch przygotowania
+        próbki dla badań instrumentalnych, kontroli jakości i recyklingu.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+      {Object.entries(categories).map(([key, cat]) => {
+        const count = allMachines.filter((m) => m.data.category === key).length;
+        return (
+          <a href={cat.path} class="bg-[var(--color-surface)] p-6 hover:bg-[var(--color-surface-2)] transition-colors group block">
+            <div class="font-mono text-xs text-[var(--color-text-dim)] mb-2">{count} {count === 1 ? 'pozycja' : count < 5 ? 'pozycje' : 'pozycji'}</div>
+            <h3 class="text-base font-semibold mb-2 group-hover:text-[var(--color-peach)] transition-colors">{cat.label}</h3>
+            <p class="text-xs text-[var(--color-text-muted)] leading-relaxed line-clamp-3">{cat.description}</p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="container-page py-16 lg:py-20">
+    <div class="card p-8 lg:p-12 grid-bg-bordo">
+      <div class="mb-10">
+        <div class="eyebrow mb-3">Normy techniczne</div>
+        <h2>Projektujemy zgodnie z polskimi i międzynarodowymi normami</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+          Nasze urządzenia projektujemy w oparciu o obowiązujące normy branżowe (PN-ISO, EN, ASTM).
+          Z każdym urządzeniem dostarczamy pełną dokumentację techniczną.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {norms.map((n) => (
+          <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-md p-4">
+            <div class="font-mono text-sm font-semibold text-[var(--color-peach)] mb-1">{n.code}</div>
+            <div class="text-xs text-[var(--color-text-muted)] leading-relaxed">{n.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16 lg:py-20">
+    <div class="card p-8 lg:p-12 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-bordo)] opacity-[0.10] blur-[100px] rounded-full"></div>
+      <div class="relative">
+        <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <div class="eyebrow mb-3">Proces współpracy</div>
+            <h2>Od zapytania do wdrożenia</h2>
+          </div>
+          <a href="/proces-produkcji/" class="btn btn-ghost text-sm">Pełny proces →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+          {process.map((p) => (
+            <div class="bg-[var(--color-surface)] p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-xs text-[var(--color-peach)] tabular-nums">{p.n}</span>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[var(--color-text-dim)]">{p.time}</span>
+              </div>
+              <h3 class="text-base font-semibold mb-2">{p.title}</h3>
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="container-page py-16 lg:py-20">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <div>
+        <div class="eyebrow mb-3">FAQ</div>
+        <h2>Najczęściej zadawane pytania</h2>
+        <p class="mt-3 text-[var(--color-text-muted)]">
+          Odpowiedzi na pytania, które najczęściej pojawiają się w korespondencji z naszymi klientami.
+        </p>
+        <a href="/kontakt/" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-peach)] hover:text-[var(--color-peach-hover)]">
+          Nie ma Twojego pytania? Napisz do nas
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+      </div>
+      <div class="lg:col-span-2 space-y-3">
+        {faq.map((f, i) => (
+          <details class="card group" open={i === 0}>
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+              <span class="font-semibold text-[var(--color-text)] group-hover:text-[var(--color-peach)] transition-colors">{f.q}</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="flex-shrink-0 transition-transform group-open:rotate-180">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 -mt-1">
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Porozmawiajmy o szczegółach"
+    description="Bezpłatna wycena w 24h. Skonfigurujemy urządzenie pod Państwa specyfikę lub umówimy demonstrację u Państwa w laboratorium."
+  />
+</BaseLayout>

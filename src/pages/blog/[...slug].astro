@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const breadcrumbs = [
+  { name: 'Blog', href: '/blog/' },
+  { name: post.data.title, href: `/blog/${post.id}/` },
+];
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const schema = {
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  dateModified: (post.data.updated ?? post.data.date).toISOString(),
+  author: { '@id': 'https://as-lab.pl/#organization' },
+  publisher: { '@id': 'https://as-lab.pl/#organization' },
+  image: post.data.hero,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(Astro.url.pathname, 'https://as-lab.pl').toString() },
+};
+---
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description ?? post.data.title}
+  image={post.data.hero}
+  schema={schema}
+  type="article"
+  breadcrumbs={breadcrumbs}
+  publishedTime={post.data.date.toISOString()}
+  modifiedTime={(post.data.updated ?? post.data.date).toISOString()}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <article>
+    <header class="container-narrow pt-16 pb-10">
+      <a href="/blog/" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-cyan)] inline-flex items-center gap-1.5 mb-6">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M11 7H3m0 0l4 4m-4-4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        Wszystkie wpisy
+      </a>
+      <div class="flex items-center gap-3 text-xs text-[var(--color-text-dim)] mb-4">
+        <time datetime={post.data.date.toISOString()} class="font-mono uppercase tracking-wider">
+          {formatDate(post.data.date)}
+        </time>
+        {post.data.categories.length > 0 && (
+          <>
+            <span>·</span>
+            <span>{post.data.categories.join(', ')}</span>
+          </>
+        )}
+      </div>
+      <h1 class="mb-6">{post.data.title}</h1>
+      {post.data.description && (
+        <p class="text-xl text-[var(--color-text-muted)] leading-relaxed">{post.data.description}</p>
+      )}
+    </header>
+
+    {post.data.hero && (
+      <div class="container-page mb-12">
+        <div class="aspect-[16/9] overflow-hidden rounded-lg bg-[var(--color-surface)]">
+          <img src={post.data.hero} alt={post.data.heroAlt ?? post.data.title} class="w-full h-full object-cover" />
+        </div>
+      </div>
+    )}
+
+    <div class="container-narrow pb-20">
+      <div class="prose-dark blog-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .blog-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2.5em;
+    margin-bottom: 0.75em;
+    letter-spacing: -0.02em;
+  }
+  .blog-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+  .blog-content p { margin-bottom: 1.25em; }
+  .blog-content ul, .blog-content ol { margin: 1.25em 0; padding-left: 1.5rem; }
+  .blog-content li { margin-bottom: 0.5em; }
+  .blog-content li::marker { color: var(--color-cyan); }
+  .blog-content strong { color: var(--color-text); }
+  .blog-content figure {
+    margin: 2em 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+  .blog-content img { width: 100%; height: auto; display: block; }
+  .blog-content a { color: var(--color-cyan); text-decoration: underline; text-decoration-color: rgba(6, 182, 212, 0.3); text-underline-offset: 3px; }
+  .blog-content a:hover { color: var(--color-cyan-hover); text-decoration-color: var(--color-cyan); }
+</style>

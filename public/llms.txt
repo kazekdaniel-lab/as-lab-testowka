@@ -1,0 +1,128 @@
+# AS-LAB - Profesjonalny sprzęt laboratoryjny
+
+> AS-LAB Sp. z o.o. to polski producent maszyn dla przemysłu, kopalń i laboratoriów. Projektujemy, konstruujemy i produkujemy kruszarki, młyny, sita analityczne, przesiewacze, gniotowniki i urządzenia specjalistyczne. Firma działa pod marką AS-LAB od 2022 roku, ale trzon zespołu to konstruktorzy z ponad 20-letnim doświadczeniem - mamy za sobą 300-400 zrealizowanych projektów. Cały proces - od projektu CAD po wdrożenie u klienta - realizujemy samodzielnie w warsztacie w Łazach k. Bochni. Serwis na terenie całej Polski, eksport na rynki europejskie i Bliski Wschód. Obsługujemy 8 branż docelowych z priorytetami: recykling katalizatorów, serwis maszyn przemysłowych, sektor zbrojeniowy, laboratoria, kopalnie.
+
+## Profil firmy
+
+- **Nazwa**: AS-LAB Sp. z o.o.
+- **Adres**: Łazy 32, 32-765 Rzezawa, woj. małopolskie, Polska
+- **GPS**: 49.9900° N, 20.5136° E (ok. 50 km na wschód od Krakowa)
+- **Telefon**: +48 500 515 610
+- **E-mail**: aslab.bochnia@gmail.com
+- **Strona**: https://as-lab.pl
+- **Marka AS-LAB od**: 2022 (zespół z 20+ lat doświadczenia w branży)
+- **Zrealizowane projekty**: 300-400
+- **Eksport**: Hiszpania, Litwa, Bułgaria, Rumunia, Łotwa, Czechy, Dubaj (ZEA)
+- **Branża**: Produkcja maszyn dla przemysłu (PKD 28.99.Z, 33.12.Z)
+- **Godziny pracy**: pn-pt 8:00-16:00
+
+## Główne sekcje strony
+
+- [Katalog maszyn](https://as-lab.pl/maszyny/): pełna lista 25+ modeli z filtrami po kategorii i branży
+- [Realizacje](https://as-lab.pl/realizacje/): case studies wdrożeń u klientów (recykling, kopalnie, laboratoria, zbrojeniówka)
+- [Serwis maszyn](https://as-lab.pl/serwis-maszyn/): mobilny + stacjonarny w Łazach
+- [O firmie](https://as-lab.pl/o-firmie/): historia, 8 branż klienta, kamienie milowe
+- [Proces produkcji](https://as-lab.pl/proces-produkcji/): 4 etapy USP - projekt → konstrukcja → produkcja → wdrożenie
+- [Słownik](https://as-lab.pl/slownik/): terminy techniczne (mielenie, frakcja, sito ISO, biegaczewanie)
+- [Blog](https://as-lab.pl/blog/): artykuły techniczne
+- [Kontakt](https://as-lab.pl/kontakt/): formularz, telefon, adres, mapa
+
+## 8 branż klienta (priorytet)
+
+1. **Recykling katalizatorów** - zakłady przetwarzania katalizatorów samochodowych, odzysk Pt/Pd/Rh
+2. **Serwis maszyn przemysłowych** - utrzymanie ruchu, naprawy w fabrykach
+3. **Sektor zbrojeniowy** - producenci uzbrojenia, służby mundurowe, technologie obronne
+4. **Laboratoria** - badawcze, analityczne, przemysłowe
+5. **Kopalnie i wydobycie** - ciężki sprzęt w trudnych warunkach
+6. **Budownictwo** - testy kruszyw, materiały drogowe
+7. **Farmaceutyka** - mielenie substancji aktywnych, sita standaryzowane
+8. **Przemysł chemiczny** - kadzie kwasoodporne, procesy reaktywne
+
+## Kategorie produktów
+
+### Kruszarki i młynki (15)
+- [Kruszarka szczękowa ZKS-65 (ZKS-65)](https://as-lab.pl/maszyny/kruszarka-szczekowa-zks-65/): Mobilna kruszarka szczękowa dla próbek geologicznych i materiałów twardych
+- [Kruszarka walcowa LKW-240 (4-walcowa) (LKW-240)](https://as-lab.pl/maszyny/kruszarka-walcowa-lkw-240/): Czterowalcowa kruszarka do precyzyjnego rozdrabniania materiałów twardych
+- [Kruszarka walcowa LKW-280 (6-walcowa) (LKW-280)](https://as-lab.pl/maszyny/kruszarka-walcowa-lkw-280/): Sześciowalcowa kruszarka o najwyższej precyzji rozdrabniania
+- [Kruszarka młotkowa KM-400 (KM-400)](https://as-lab.pl/maszyny/kruszarka-mlotkowa-km-400/): Wstępne rozdrabnianie udarowe z wymiennymi młotkami ze stopów hartowanych
+- [Młynek wibracyjny MW-200 (MW-200)](https://as-lab.pl/maszyny/mlynek-wibracyjny-mw-200/): Głębokie mielenie materiałów do 9 stopni w skali Mohsa
+- [Kruszarka młotkowa KM-300 (KM-300)](https://as-lab.pl/maszyny/kruszarka-mlotkowa-km-300/): Mniejszy model kruszarki młotkowej do rozdrabniania udarowego
+- [Kruszarka szczękowa ZKS-100 (ZKS-100)](https://as-lab.pl/maszyny/kruszarka-szczekowa-zks-100/): Średniej wielkości kruszarka szczękowa o zwiększonej przepustowości
+- [Kruszarka szczękowa ZKS-130 (ZKS-130)](https://as-lab.pl/maszyny/kruszarka-szczekowa-zks-130/): Duża kruszarka szczękowa do wymagających zastosowań przemysłowych
+- [Kruszarka stożkowa](https://as-lab.pl/maszyny/kruszarka-stozkowa/): Rozdrabnianie stożkowe z napędem w wykonaniu przeciwwybuchowym (EX)
+- [Kruszarka szczękowa ZKS-260 (ZKS-260)](https://as-lab.pl/maszyny/kruszarka-szczekowa-zks-260/): Największa kruszarka szczękowa serii ZKS o najwyższej przepustowości
+- [Młynek odsiewający MW-200S (MW-200S)](https://as-lab.pl/maszyny/mlynek-odsiewajacy-mw-200s/): Przygotowanie próbki analitycznej 0,2S z węgla kamiennego wg PN-90/G-04502
+- [Młynek planetarny MP-500 (4-komorowy) (MP-500)](https://as-lab.pl/maszyny/mlynek-planetarny-mp-500/): Czterokomorowy młynek planetarny z cyfrowym sterowaniem
+- [Młyn rolkowy](https://as-lab.pl/maszyny/mlyn-rolkowy/): Mielenie i ucieranie materiałów za pomocą obrotowych rolek
+- [Młynek planetarny MP-250 (2-komorowy) (MP-250)](https://as-lab.pl/maszyny/mlynek-planetarny-mp-250/): Dwukomorowy młynek planetarny do precyzyjnego mielenia próbek
+- [Młynek ROGI](https://as-lab.pl/maszyny/mlynek-rogi/): Oznaczanie spiekalności węgla metodą Roga wg PN-ISO 15585:2009
+
+### Mielenie katalizatorów (2)
+- [Młyn kulowy (seria MK) (MK)](https://as-lab.pl/maszyny/mlyn-kulowy/): Mielenie katalizatorów na drobny proszek - oznaczenia MK wg pojemności
+- [Zestaw do katalizatorów metalowych](https://as-lab.pl/maszyny/zestaw-katalizatorow-metalowych/): Kompletna linia: kruszarka wirnikowa udarowa + 1-pokładowy przesiewacz
+
+### Sita laboratoryjne (4)
+- [Sita analityczne 200 mm](https://as-lab.pl/maszyny/sita-analityczne-200mm/): 78 standardowych rozmiarów oczek od 20 µm do 31,5 mm wg PN-ISO 3310
+- [Sita analityczne 300 mm](https://as-lab.pl/maszyny/sita-analityczne-300mm/): Większa średnica do prób o większej objętości materiału
+- [Sita prętowe](https://as-lab.pl/maszyny/sita-pretowe/): Klasyfikacja materiałów grubych - kruszyw, węgla, koksu, rudy
+- [Specjalne sita do zbóż](https://as-lab.pl/maszyny/sita-zbozowe/): Kontrola jakości ziaren - analiza materiału siewnego
+
+### Przesiewacze (3)
+- [Przesiewacz posuwisto-zwrotny 800×100](https://as-lab.pl/maszyny/przesiewacz-posuwisto-zwrotny-800x100/): Profesjonalna analiza sitowa koksu wg PN-C-04310:1984
+- [Przesiewacz posuwisto-zwrotny PLM-760 (760×960) (PLM-760)](https://as-lab.pl/maszyny/przesiewacz-posuwisto-zwrotny-760x960/): Większa powierzchnia robocza dla zwiększonej wydajności
+- [Ramy aluminiowe do przesiewacza PLM-760](https://as-lab.pl/maszyny/ramy-aluminiowe-przesiewacz-plm-760/): Wymienne ramy aluminiowe na pokłady sitowe do przesiewacza PLM-760
+
+### Bęben Los Angeles (4)
+- [Bęben Los Angeles z kabiną dźwiękoszczelną](https://as-lab.pl/maszyny/beben-los-angeles-kabina/): Badanie odporności kruszyw na rozdrabnianie - PN-EN 1097-2, ASTM C131
+- [Bęben Los Angeles - wersja otwarta](https://as-lab.pl/maszyny/beben-los-angeles-otwarty/): Standardowa wersja bez kabiny - zgodność z EN 1097-2 i ASTM C131
+- [Bęben Micum](https://as-lab.pl/maszyny/beben-micum/): Oznaczanie wytrzymałości mechanicznej koksu metodą Micum (PN-C-04305, ISO 556)
+- [Stanowisko do badania wytrzymałości koksu](https://as-lab.pl/maszyny/stanowisko-badania-koksu/): Kompletne stanowisko do oznaczania wytrzymałości mechanicznej koksu
+
+### Mas pirotechniczne (2)
+- [Gniotownik obiegowy do mas pirotechnicznych](https://as-lab.pl/maszyny/gniotownik-obiegowy/): Biegaczewanie mas pirotechnicznych - wysoka homogeniczność mieszanki
+- [Tokarka do mas pirotechnicznych](https://as-lab.pl/maszyny/tokarka-do-mas-pirotechnicznych/): Specjalistyczna tokarka do obróbki mas pirotechnicznych (sektor obronny)
+
+### Inne urządzenia (6)
+- [Próbnik kubełkowy](https://as-lab.pl/maszyny/probnik-kubelkowy/): Pobieranie reprezentatywnych prób materiałów sypkich
+- [Próbnik szczelinowy](https://as-lab.pl/maszyny/probnik-szczelinowy/): Pobieranie prób materiałów warstwowych z różnych poziomów
+- [Wózek transportowy](https://as-lab.pl/maszyny/wozek-transportowy/): Wózki transportowe dla laboratoriów i zakładów przemysłowych
+- [Stół do mycia materiałów przeciwwybuchowych](https://as-lab.pl/maszyny/stol-do-mycia-ex/): Bezpieczne stanowisko pracy z materiałami wymagającymi szczególnej ostrożności
+- [Ucierak moździerzowy LUM-200 (LUM-200)](https://as-lab.pl/maszyny/ucierak-mozdzierzowy/): Mechaniczne ucieranie i mieszanie próbek - rozcieranie przez nacisk i tarcie
+- [Stanowisko do sporządzania roztworów](https://as-lab.pl/maszyny/stanowisko-sporzadzania-roztworow/): Stanowisko laboratoryjne ze stali nierdzewnej do przygotowania roztworów
+
+### Nietypowe zamówienia (8)
+- [Sondy do pobierania prób](https://as-lab.pl/maszyny/sondy-pobierania-probek/): Indywidualne sondy dopasowane do specyfiki badanego materiału
+- [Cylindry pomiarowe do gęstości nasypowej](https://as-lab.pl/maszyny/cylindry-pomiarowe/): Precyzyjne oznaczanie gęstości nasypowej kruszyw
+- [Podzielnik Jonesa (szczelinowy)](https://as-lab.pl/maszyny/podzielnik-jonesa/): Klasyczny podzielnik szczelinowy do reprezentatywnego podziału próbek
+- [Podzielnik żłobkowy](https://as-lab.pl/maszyny/podzielnik-zlobkowy/): Podzielnik z układem żłobków/przegród do równomiernego podziału
+- [Podzielniki 2- i 3-stopniowe](https://as-lab.pl/maszyny/podzielniki-2-3-stopniowe/): Wielostopniowy podział próbki w jednym przejściu materiału
+- [Kadzie kwasoodporne](https://as-lab.pl/maszyny/kadzie-kwasoodporne/): Pojemniki z materiałów odpornych na działanie kwasów
+- [Regał mosiężny w wykonaniu specjalnym](https://as-lab.pl/maszyny/regal-mosiezny-pirotechnika/): Regał w wykonaniu specjalnym dla branży pirotechnicznej
+- [Szafa do przewożenia spłonek](https://as-lab.pl/maszyny/szafa-do-przewozenia-splonek/): Mobilna szafa ze stali nierdzewnej do bezpiecznego transportu spłonek
+
+## Obszar działania
+
+Produkcja w całości w Łazach k. Bochni (woj. małopolskie). Dostawy do klientów w całej Polsce oraz na eksport (Hiszpania, Litwa, Bułgaria, Rumunia, Łotwa, Czechy, Dubaj). Najwięcej realizacji w przemyśle wydobywczym, ciężkim, recyklingu i sektorze obronnym - branżach docelowych AS-LAB.
+
+Remonty stacjonarne: warsztat w Łazach k. Bochni (woj. małopolskie). Serwis mobilny: cała Polska.
+
+## USP - polski producent
+
+Cały proces tworzenia urządzeń realizujemy **samodzielnie**:
+1. **Projekt CAD** (3-10 dni) - dokumentacja techniczna w SolidWorks/AutoCAD
+2. **Konstrukcja** (1-3 tyg.) - cięcie, spawanie MIG/MAG/TIG, obróbka CNC, hartowanie
+3. **Produkcja i montaż** (2-5 tyg.) - automatyka PLC, testy obciążeniowe, malowanie proszkowe
+4. **Wdrożenie** (1-3 dni) - transport, montaż, szkolenie, dokumentacja techniczna
+
+## Normy i certyfikaty
+
+- PN-ISO 3310-1:2000 i PN-ISO 3310-2:2000 (sita analityczne)
+- PN-C-04310:1984 i PN-ISO 728:1999 (przesiewacze, analiza koksu)
+- EN 1097-2, EN 12697-43, ASTM C131 (bęben Los Angeles)
+- Deklaracje zgodności CE dla każdej maszyny
+
+## Source files
+
+- [llms-full.txt](https://as-lab.pl/llms-full.txt): pełna dokumentacja z opisami wszystkich 25 maszyn
+- [sitemap-index.xml](https://as-lab.pl/sitemap-index.xml): mapa wszystkich stron
+- [rss.xml](https://as-lab.pl/blog/rss.xml): RSS bloga

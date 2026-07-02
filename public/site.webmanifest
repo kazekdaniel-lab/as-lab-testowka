@@ -1,0 +1,47 @@
+{
+  "name": "AS-LAB - Sprzęt laboratoryjny",
+  "short_name": "AS-LAB",
+  "description": "Producent kruszarek, młynów, sit i wstrząsarek laboratoryjnych dla kopalń i laboratoriów.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0B0D",
+  "theme_color": "#0A0B0D",
+  "lang": "pl",
+  "dir": "ltr",
+  "categories": ["business", "industrial", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Skontaktuj się z nami - wycena w 24h",
+      "url": "/kontakt/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Serwis maszyn",
+      "short_name": "Serwis",
+      "description": "Zamów serwis kruszarek lub urządzeń",
+      "url": "/serwis-maszyn/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Oferta produktów",
+      "short_name": "Oferta",
+      "description": "Pełna oferta sprzętu laboratoryjnego",
+      "url": "/#oferta",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

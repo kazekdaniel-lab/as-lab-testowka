@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import r1 from '../assets/realizations/r1.jpeg';
+import r2 from '../assets/realizations/r2.jpeg';
+import r3 from '../assets/realizations/r3.jpeg';
+import r4 from '../assets/realizations/r4.jpeg';
+import r6 from '../assets/realizations/r6.jpeg';
+import r7 from '../assets/realizations/r7.jpeg';
+import r8 from '../assets/realizations/r8.jpeg';
+import r9 from '../assets/realizations/r9.jpeg';
+import sitaNietypowe from '../assets/realizations/sita-nietypowe.jpeg';
+import zestawKat from '../assets/products/Zestaw-do-katalizatorow-metalowych.JPG';
+import stanowiskoKoks from '../assets/products/stanowisko-koks.jpg';
+import serwisNaprawa from '../assets/products/serwis-naprawa.png';
+import przesiewaczWielo from '../assets/products/przesiewacz-wielopokladowy.jpg';
+
+const title = 'Realizacje AS‑LAB - maszyny i urządzenia dla przemysłu';
+const description = 'Nasze realizacje: linia technologiczna do recyklingu katalizatorów, stanowisko do badania wytrzymałości koksu, wieloletnia obsługa serwisowa. 300-400 zrealizowanych projektów.';
+
+const breadcrumbs = [{ name: 'Realizacje', href: '/realizacje/' }];
+
+// Prawdziwe case studies dostarczone przez klienta
+const caseStudies = [
+  {
+    industry: 'Recykling katalizatorów',
+    location: 'małopolskie, kujawsko-pomorskie, mazowieckie, dolnośląskie',
+    year: '2023-2024',
+    title: 'Linia technologiczna do recyklingu katalizatorów',
+    description: 'Dla firmy specjalizującej się w skupie i przetwarzaniu katalizatorów dostarczyliśmy kompletną linię technologiczną do rozdrabniania i segregacji materiału - wytrzymałą kruszarkę młotkową KM-400 oraz 1-pokładowy przesiewacz umożliwiający precyzyjne odsiewanie frakcji. Głównym wyzwaniem było zapewnienie wysokiej wydajności procesu przy zachowaniu dokładnej separacji materiału oraz ograniczeniu zapylenia stanowiska. Zastosowane rozwiązania pozwoliły efektywnie przygotować wsad do dalszych etapów odzysku metali szlachetnych.',
+    machines: ['Kruszarka młotkowa KM-400', 'Przesiewacz 1-pokładowy', 'System odpylający'],
+    image: zestawKat,
+  },
+  {
+    industry: 'Przemysł koksowniczy i hutniczy',
+    location: 'dolnośląskie',
+    year: '2025-2026',
+    title: 'Stanowisko do badania wytrzymałości koksu',
+    description: 'W ramach realizacji prowadzonej w konsorcjum zaprojektowaliśmy, wykonaliśmy, dostarczyliśmy i uruchomiliśmy kompletne stanowisko do oznaczania wytrzymałości mechanicznej koksu w istniejącym budynku sortowni grubej. Zakres prac obejmował integrację bębna cylindrycznego z mechanizmem napędowym, układu ważenia, zestawu sit badawczych, mechanizmu potrząsającego oraz instalacji odpylającej. Wyzwaniem było dostosowanie urządzeń do istniejącej infrastruktury oraz zgodność z wymaganiami norm badawczych i specyfikacją przetargową.',
+    machines: ['Bęben Micum', 'Przesiewacz pokładowy', 'Sita według norm'],
+    image: stanowiskoKoks,
+  },
+  {
+    industry: 'Przemysł produkcyjny',
+    location: 'śląskie',
+    year: '2023-2028',
+    title: 'Wieloletnia obsługa serwisowa urządzeń i maszyn produkcyjnych',
+    description: 'W ramach wieloletniej umowy realizujemy kompleksowe usługi serwisowe: przeglądy okresowe, konserwację, diagnostykę oraz naprawy urządzeń eksploatowanych przez klienta. Zakres obejmuje zarówno działania prewencyjne, jak i usuwanie awarii oraz wymianę zużytych podzespołów. Głównym wyzwaniem jest zapewnienie wysokiej dostępności maszyn przy ograniczeniu przestojów produkcyjnych do minimum. Regularny serwis utrzymuje urządzenia w pełnej sprawności i wydłuża okres ich eksploatacji.',
+    machines: ['Serwis maszyn', 'Umowa serwisowa long-term', 'Diagnostyka i naprawy'],
+    image: serwisNaprawa,
+  },
+];
+
+const gallery = [przesiewaczWielo, r1, r2, r3, r4, r6, r7, r8, r9, sitaNietypowe];
+
+const schema = {
+  '@type': 'CollectionPage',
+  name: 'Realizacje AS‑LAB',
+  description,
+  hasPart: caseStudies.map((cs) => ({
+    '@type': 'CreativeWork',
+    name: cs.title,
+    description: cs.description,
+    about: cs.industry,
+  })),
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pt-8 pb-12">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Realizacje · 100+ wdrożeń</div>
+      <h1 class="mb-6">Maszyny <span class="text-gradient-bordo">wdrożone</span> u klientów</h1>
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Wybór z naszych realizacji - linie recyklingu katalizatorów, kruszarki dla kopalń,
+        sita dla laboratoriów, urządzenia specjalistyczne dla sektora zbrojeniowego.
+        Anonimowe opisy ze względu na poufność umów z klientami.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="grid lg:grid-cols-2 gap-6">
+      {caseStudies.map((cs) => (
+        <article class="card overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] overflow-hidden bg-[var(--color-bg)]">
+            <Image
+              src={cs.image}
+              alt={`Realizacja: ${cs.title}`}
+              widths={[600, 1000]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-7 flex-1 flex flex-col">
+            <div class="flex items-center gap-3 mb-4 text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)]">
+              <span class="badge badge-bordo">{cs.industry}</span>
+              <span>{cs.location}</span>
+              <span>·</span>
+              <span>{cs.year}</span>
+            </div>
+            <h2 class="text-xl font-semibold mb-3 text-[var(--color-text)]">{cs.title}</h2>
+            <p class="text-[var(--color-text-muted)] leading-relaxed mb-5 flex-1">
+              {cs.description}
+            </p>
+            <div class="pt-4 border-t border-[var(--color-border)]">
+              <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
+                Wykorzystane maszyny
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {cs.machines.map((m) => (
+                  <span class="text-xs text-[var(--color-peach)] font-medium">{m}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="card p-8 lg:p-12 grid-bg-bordo">
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-10 items-center">
+        <div>
+          <div class="eyebrow mb-3">Eksport</div>
+          <h2>Realizacje także za&nbsp;granicą</h2>
+          <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">
+            Nasze maszyny i rozwiązania eksportujemy na rynki europejskie oraz Bliski Wschód -
+            z tymi samymi standardami jakości co w kraju.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {['Hiszpania', 'Litwa', 'Bułgaria', 'Rumunia', 'Łotwa', 'Czechy', 'Dubaj (ZEA)'].map((c) => (
+            <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-md p-3 text-sm text-[var(--color-text)] flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-bordo)]"></span>
+              {c}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16">
+    <div class="mb-10">
+      <div class="eyebrow mb-3">Galeria warsztatu i maszyn</div>
+      <h2>Z naszego archiwum</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      {gallery.map((g, i) => (
+        <div class={`overflow-hidden rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] ${i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'}`}>
+          <Image
+            src={g}
+            alt={`Realizacja AS‑LAB ${i + 1}`}
+            widths={[300, 500, 700]}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTA
+    title="Twoja realizacja może być następna"
+    description="Opisz potrzebę - przygotujemy koncepcję, wycenę i harmonogram realizacji w ciągu 2-5 dni roboczych."
+  />
+</BaseLayout>

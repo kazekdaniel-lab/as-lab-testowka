@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import sita from '../assets/products/sita-laboratoryjne.jpeg';
+
+const title = 'Sita laboratoryjne | Sita analityczne i prętowe | AS‑LAB';
+const description = 'AS‑LAB oferuje sita laboratoryjne - analityczne PN-ISO 3310-1:2000, prętowe oraz specjalne sita do zbóż. Producent w Bochni (okolice Tarnowa i Brzeska).';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Sita laboratoryjne', href: '/sita-laboratoryjne/' }];
+
+const schema = {
+  '@type': 'ProductGroup',
+  name: 'Sita laboratoryjne',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="PN-ISO 3310-1:2000 · PN-ISO 3310-2:2000"
+    title="Sita"
+    highlight="laboratoryjne"
+    description="Producent sit analitycznych w Bochni (okolice Tarnowa i Brzeska). Okrągłe, w obręczach nierdzewnych, oczka kwadratowe, pokłady z tkanin nierdzewnych lub sit perforowanych. Średnice 200 mm, 300 mm i niestandardowe."
+    primaryCta={{ href: '/kontakt/', label: 'Dobierz oczka' }}
+  />
+
+  <section class="container-page pt-12">
+    <div class="aspect-[21/9] overflow-hidden rounded-lg bg-[var(--color-bg)]">
+      <Image
+        src={sita}
+        alt="Sita laboratoryjne AS‑LAB - produkcja w Bochni"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <article class="card p-6">
+        <span class="badge mb-3">Analityczne</span>
+        <h2 class="text-xl mb-3">Sita analityczne</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Okrągłe sita w obręczach nierdzewnych, oczka kwadratowe. Pokłady z tkanin z drutu nierdzewnego
+          (PN-ISO 3310-1:2000) lub nierdzewnych sit perforowanych (PN-ISO 3310-2:2000).
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Podstawowe narzędzie w laboratoriach, gdzie ogromne znaczenie ma <strong class="text-[var(--color-text)]">precyzyjne
+          rozdzielanie cząstek według rozmiaru</strong>. Niezastąpione w przemyśle chemicznym,
+          farmaceutycznym, badaniach materiałowych i geologicznych.
+        </p>
+      </article>
+
+      <article class="card p-6">
+        <span class="badge mb-3">Prętowe</span>
+        <h2 class="text-xl mb-3">Sita prętowe</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Sita prętowe stosowane do klasyfikacji materiałów grubych - kruszyw, węgla, koksu, rudy.
+          Trwała konstrukcja z prętów stalowych odporna na intensywną eksploatację.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Wymiary i rozstaw prętów ustalany indywidualnie pod specyfikę materiału i wymaganą frakcję
+          rozdziału.
+        </p>
+      </article>
+
+      <article class="card p-6">
+        <span class="badge mb-3">Zbożowe</span>
+        <h2 class="text-xl mb-3">Specjalne sita do zbóż</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Sita laboratoryjne dedykowane analizie ziaren zbóż - kontrola jakości, klasyfikacja rozmiaru,
+          ocena czystości materiału siewnego.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Pokłady dopasowane do PN i wewnętrznych standardów branżowych. Wymiary oczek na zamówienie.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="container-page py-12">
+    <div class="card p-8 lg:p-10">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-amber)] mb-3">
+            Dostępne rozmiary oczek
+          </div>
+          <h2 class="text-2xl mb-4">Sita o średnicy 200 mm</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Pełna gama rozmiarów oczek od <strong class="font-mono text-[var(--color-text)]">20 µm</strong>
+            do <strong class="font-mono text-[var(--color-text)]">31,5 mm</strong> - 78 standardowych rozmiarów
+            zgodnych z PN-ISO. Możliwość zamówienia nietypowych rozmiarów na specyfikację klienta.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            {['20 µm', '45 µm', '100 µm', '250 µm', '500 µm', '1,00 mm', '2,00 mm', '4,75 mm', '10,0 mm', '20,0 mm', '31,5 mm'].map((v) => (
+              <span class="badge font-mono">{v}</span>
+            ))}
+            <span class="badge font-mono">+67 więcej</span>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[var(--color-cyan)] mb-3">
+            Średnica 300 mm
+          </div>
+          <h2 class="text-2xl mb-4">Sita o średnicy 300 mm</h2>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">
+            Większa średnica do prób o większej objętości. Identyczna gama rozmiarów oczek jak dla
+            sit 200 mm. Idealne do analiz wymagających większej masy próbki.
+          </p>
+          <div class="mt-6 prose-dark text-sm">
+            <p class="text-[var(--color-text-muted)]">
+              <strong class="text-[var(--color-text)]">Sita laboratoryjne Tarnów / Bochnia / Brzesko</strong> -
+              produkujemy lokalnie z możliwością odbioru osobistego.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Sita pod Państwa specyfikę"
+    description="Dobierzemy pokład sitowy, średnicę obręczy i rozmiar oczek pod typ materiału. Realizacja nietypowych rozmiarów."
+  />
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SpecsTable from '../components/SpecsTable.astro';
+import CTA from '../components/CTA.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { Image } from 'astro:assets';
+import beben from '../assets/products/beben-los-angeles.jpeg';
+
+const title = 'Bęben Los Angeles z kabiną dźwiękoszczelną | AS‑LAB';
+const description = 'W naszej ofercie urządzeń posiadamy również bęben Los Angeles dostępny z kabiną dźwiękoszczelną. Zgodny z normami EN 1097-2, EN 12697-43, ASTM C131.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Bęben Los Angeles', href: '/beben-los-angeles/' }];
+
+const schema = {
+  '@type': 'Product',
+  name: 'Bęben Los Angeles',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+  category: 'Urządzenia laboratoryjne',
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="EN 1097-2 · EN 12697-43 · ASTM C131"
+    title="Bęben"
+    highlight="Los Angeles"
+    description="Specjalistyczne urządzenie do przeprowadzania testów zużycia kruszyw. Dostępne w wersji z kabiną dźwiękoszczelną lub bez. Zgodne z normami europejskimi i amerykańskimi."
+    primaryCta={{ href: '/kontakt/', label: 'Zapytaj o wycenę' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 prose-dark">
+        <div class="aspect-[4/3] overflow-hidden rounded-lg bg-[var(--color-bg)] mb-10 not-prose">
+          <Image
+            src={beben}
+            alt="Bęben Los Angeles z kabiną dźwiękoszczelną - AS‑LAB"
+            widths={[600, 1000, 1400]}
+            sizes="(min-width: 1024px) 66vw, 100vw"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <h2>Do czego służy bęben Los Angeles?</h2>
+        <p>
+          Bęben Los Angeles to <strong>specjalistyczne urządzenie służące do przeprowadzania testów
+          zużycia kruszyw</strong>. Testy wykonane za pomocą tego urządzenia pozwalają ocenić odporność
+          kruszywa (żwiru, kamienia, betonu) na ścieranie i rozdrabnianie.
+        </p>
+        <p>
+          Wyniki tych testów są podstawą do określenia <strong>trwałości i jakości materiałów</strong>,
+          a to z kolei ma bezpośredni wpływ na bezpieczeństwo i trwałość konstrukcji drogowych, mostów,
+          budynków i innych elementów infrastruktury. Z tego powodu bęben wykorzystywany jest najczęściej
+          w laboratoriach badawczych oraz w przemyśle budowlanym.
+        </p>
+
+        <h2>Jak działa test?</h2>
+        <p>
+          Próbka kruszywa umieszczana jest wewnątrz bębna wraz z kulami stalowymi. Następnie bęben
+          obracany jest przez określoną liczbę obrotów przy wykorzystaniu silnika. Proces symuluje
+          naturalne warunki ścierania (np. jazdy po drodze). Po zakończeniu testu materiał przesiewany
+          jest przez sito, aby ocenić procent zużycia.
+        </p>
+
+        <h2>Dlaczego warto wybrać bęben Los Angeles AS‑LAB?</h2>
+        <p>
+          Konstrukcja zoptymalizowana pod codzienną pracę laboratoryjną. <strong>Solidna stalowa
+          rama</strong>, elektroniczny licznik obrotów, opcjonalna kabina dźwiękoszczelna redukująca
+          poziom hałasu w pracowni. Zestaw kompletny - 12 kul stalowych i sito 1,6 mm.
+        </p>
+      </div>
+
+      <aside class="card p-6 sticky top-24 h-fit">
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Średnica wewn. bębna', value: '711 × 508 mm' },
+            { label: 'Konstrukcja', value: 'Stal, stabilna rama' },
+            { label: 'Silnik', value: '2,2 kW · 400 V' },
+            { label: 'Licznik obrotów', value: 'Elektroniczny' },
+            { label: 'Zestaw kul', value: '12 szt.' },
+            { label: 'Sito', value: '1,6 mm' },
+            { label: 'Kabina dźwiękoszczelna', value: 'Opcja' },
+            { label: 'Normy', value: 'EN 1097-2' },
+            { label: '', value: 'EN 12697-43' },
+            { label: '', value: 'ASTM C131' },
+          ]}
+        />
+      </aside>
+    </div>
+  </section>
+
+  <CTA
+    title="Bęben Los Angeles - dostawa pod klucz"
+    description="Skonfigurujemy wariant z kabiną dźwiękoszczelną lub bez. Możliwy dobór parametrów silnika i akcesoriów."
+  />
+</BaseLayout>

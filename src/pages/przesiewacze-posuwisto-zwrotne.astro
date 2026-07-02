@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import SpecsTable from '../components/SpecsTable.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import przesiewacz from '../assets/products/Przesiewacz-puswisto-zwrotny.JPG';
+
+const title = 'Przesiewacze posuwisto-zwrotne 800×100 i 760×960 | AS‑LAB';
+const description = 'Profesjonalne przesiewacze mechaniczne posuwisto-zwrotne do przesiewania koksu zgodnie z PN-C-04310:1984 oraz PN-ISO 728:1999. Pokłady 80×100 cm, 1-3 pokłady.';
+
+const breadcrumbs = [{ name: 'Produkty', href: '/#oferta' }, { name: 'Przesiewacze posuwisto-zwrotne', href: '/przesiewacze-posuwisto-zwrotne/' }];
+
+const schema = {
+  '@type': 'Product',
+  name: 'Przesiewacz posuwisto-zwrotny',
+  description,
+  brand: { '@id': 'https://as-lab.pl/#organization' },
+  category: 'Urządzenia laboratoryjne',
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero
+    eyebrow="PN-C-04310:1984 · PN-ISO 728:1999"
+    title="Przesiewacze"
+    highlight="posuwisto-zwrotne"
+    description="Profesjonalne urządzenie przeznaczone do przesiewania koksu zgodnie z obowiązującymi normami. Mechaniczny napęd posuwisto-zwrotny zapewnia precyzyjną i powtarzalną analizę sitową."
+    primaryCta={{ href: '/kontakt/', label: 'Zapytaj o wycenę' }}
+  />
+
+  <section class="container-page py-20">
+    <div class="grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-3 prose-dark">
+        <h2>Opis urządzenia</h2>
+        <p>
+          Przesiewacz mechaniczny posuwisto-zwrotny to <strong>profesjonalne urządzenie przeznaczone do
+          przesiewania koksu</strong> zgodnie z normami PN-C-04310:1984 oraz PN-ISO 728:1999.
+        </p>
+        <p>
+          Wyposażony w mechaniczny napęd o ruchu posuwisto-zwrotnym zapewnia precyzyjną i powtarzalną
+          analizę sitową. Urządzenie posiada <strong>pokłady sitowe o wymiarach 80 × 100 cm</strong> oraz
+          ramki sitowe o wysokości ok. 20 cm, umożliwiające montaż 2-3 pokładów jednocześnie. Istnieje
+          również możliwość wersji 1-pokładowej.
+        </p>
+        <p>
+          Przesiewacz oferuje <strong>regulację prędkości i czasu posuwu</strong>, co pozwala dostosować
+          parametry pracy do wymagań badawczych. Od spodu umieszczony jest wygodny, wyjmowany pojemnik
+          na przesiew.
+        </p>
+        <p>
+          Solidna konstrukcja i zgodność z obowiązującymi normami sprawiają, że urządzenie doskonale
+          sprawdza się w <strong>laboratoriach oraz zakładach przemysłowych</strong>.
+        </p>
+
+        <h2>Dostępne warianty</h2>
+        <ul>
+          <li>Pokład <strong>800 × 100 mm</strong> - kompaktowy, do mniejszych prób</li>
+          <li>Pokład <strong>760 × 960 mm</strong> - większa powierzchnia robocza</li>
+          <li>Konfiguracje 1-, 2- lub 3-pokładowe</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2 space-y-6">
+        <div class="aspect-[4/5] overflow-hidden rounded-lg bg-[var(--color-bg)]">
+          <Image
+            src={przesiewacz}
+            alt="Przesiewacz mechaniczny posuwisto-zwrotny"
+            widths={[400, 800]}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <SpecsTable
+          title="Specyfikacja"
+          specs={[
+            { label: 'Typ napędu', value: 'Mechaniczny posuwisto-zwrotny' },
+            { label: 'Pokład', value: '80 × 100 cm' },
+            { label: 'Wariant alt.', value: '760 × 960 mm' },
+            { label: 'Wysokość ramek', value: '~20 cm' },
+            { label: 'Liczba pokładów', value: '1-3' },
+            { label: 'Regulacja prędkości', value: 'Tak' },
+            { label: 'Regulacja czasu', value: 'Tak' },
+            { label: 'Pojemnik na przesiew', value: 'Wyjmowany' },
+            { label: 'Normy', value: 'PN-C-04310:1984' },
+            { label: '', value: 'PN-ISO 728:1999' },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Konfiguracja pod Państwa próbki"
+    description="Dobierzemy liczbę pokładów, wielkość ramek i parametry napędu. Wsparcie w doborze sit do analizy."
+  />
+</BaseLayout>

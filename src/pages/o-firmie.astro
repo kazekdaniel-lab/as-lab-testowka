@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import warsztat from '../assets/products/serwis-warsztat.png';
+import naprawa from '../assets/products/serwis-naprawa.png';
+import { siteConfig } from '../lib/nav';
+import { industries } from '../lib/categories';
+
+const title = 'O firmie AS‑LAB - polski producent maszyn dla przemysłu';
+const description = 'AS‑LAB Sp. z o.o. - polski producent kruszarek, młynów, sit i przesiewaczy. Zespół z ponad 20-letnim doświadczeniem, 300-400 zrealizowanych projektów, eksport na rynki europejskie i Bliski Wschód. Warsztat w Łazach k. Bochni.';
+
+const breadcrumbs = [{ name: 'O firmie', href: '/o-firmie/' }];
+
+const milestones = [
+  { year: '20+ lat', title: 'Doświadczenie zespołu', desc: 'Trzon zespołu AS‑LAB to konstruktorzy i technicy z ponad 20-letnim doświadczeniem w projektowaniu i budowie maszyn dla przemysłu, górnictwa i laboratoriów.' },
+  { year: '2022', title: 'Powstanie AS‑LAB', desc: 'Zespół zakłada AS‑LAB Sp. z o.o. z warsztatem w Łazach k. Bochni - własna produkcja kruszarek, młynów, sit i przesiewaczy pod jednym dachem.' },
+  { year: '2023', title: 'Pierwsze duże linie technologiczne', desc: 'Realizacja kompletnych linii do recyklingu katalizatorów oraz start wieloletnich umów serwisowych w przemyśle produkcyjnym.' },
+  { year: '2024', title: 'Eksport i sektor zbrojeniowy', desc: 'Rozwój współpracy międzynarodowej (Europa, Bliski Wschód) oraz realizacje dla sektora obronnego - gniotowniki i tokarki do mas pirotechnicznych.' },
+  { year: '2025+', title: 'Stanowiska badawcze i konsorcja', desc: 'Stanowiska do badania wytrzymałości koksu realizowane w konsorcjach, dalsza rozbudowa katalogu maszyn i obsługi serwisowej.' },
+];
+
+const sortedIndustries = Object.entries(industries).sort(([, a], [, b]) => a.priority - b.priority);
+
+const schema = {
+  '@type': 'AboutPage',
+  name: title,
+  description,
+  mainEntity: { '@id': 'https://as-lab.pl/#organization' },
+};
+---
+<BaseLayout {title} {description} {schema} {breadcrumbs}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pt-8 pb-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <div class="eyebrow mb-4">O firmie · 20+ lat doświadczenia zespołu</div>
+        <h1 class="mb-6">Polski producent <span class="text-gradient-bordo">maszyn</span> dla przemysłu</h1>
+        <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-6">
+          AS‑LAB Sp. z o.o. to polski producent profesjonalnego sprzętu przemysłowego
+          i laboratoryjnego. Projektujemy, konstruujemy i produkujemy kruszarki, młyny, sita
+          analityczne, przesiewacze oraz specjalistyczne urządzenia dla recyklingu katalizatorów,
+          kopalń, laboratoriów i sektora obronnego.
+        </p>
+        <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
+          Choć firma działa pod marką AS‑LAB od 2022 roku, trzon naszego zespołu to konstruktorzy
+          i technicy z <strong class="text-[var(--color-text)]">ponad 20-letnim doświadczeniem</strong>
+          w branży. Mamy za sobą <strong class="text-[var(--color-text)]">300-400 zrealizowanych
+          projektów</strong> - od mniejszych zleceń po duże inwestycje. Cały proces (projekt CAD,
+          konstrukcja, produkcja, wdrożenie) realizujemy samodzielnie w warsztacie w Łazach k. Bochni.
+        </p>
+
+        <div class="mt-10 grid grid-cols-2 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+          {[
+            { v: '20+', l: 'lat doświadczenia zespołu' },
+            { v: '300-400', l: 'zrealizowanych projektów' },
+            { v: '7', l: 'krajów eksportu' },
+            { v: 'PL', l: 'cała Polska + export' },
+          ].map((s) => (
+            <div class="stat-tile rounded-none border-0">
+              <div class="stat-tile-value">{s.v}</div>
+              <div class="stat-tile-label">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="aspect-[4/3] overflow-hidden rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
+          <Image
+            src={warsztat}
+            alt="Warsztat AS‑LAB w Łazach"
+            widths={[600, 1000]}
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="aspect-[4/3] overflow-hidden rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
+          <Image
+            src={naprawa}
+            alt="Praca techniczna - serwis u klienta"
+            widths={[600, 1000]}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16">
+    <div class="mb-12">
+      <div class="eyebrow mb-3">Branże klienta</div>
+      <h2>Dla kogo pracujemy</h2>
+      <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+        Osiem sektorów przemysłu - od recyklingu katalizatorów po obronność. Każdy z naszych
+        modeli maszyn projektujemy z myślą o konkretnym zastosowaniu branżowym.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {sortedIndustries.map(([key, ind]) => (
+        <article class={`card p-6 ${ind.priority <= 3 ? 'card-bordo' : ''}`}>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-10 h-10 rounded-md bg-[var(--color-bg)] border border-[var(--color-border-strong)] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d={ind.icon}/>
+              </svg>
+            </div>
+            <span class="font-mono text-xs text-[var(--color-text-dim)]">0{ind.priority}</span>
+          </div>
+          <h3 class="text-base font-semibold mb-2">{ind.label}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{ind.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16">
+    <div class="mb-12">
+      <div class="eyebrow mb-3">Historia</div>
+      <h2>Kamienie milowe</h2>
+    </div>
+
+    <div class="relative pl-8 lg:pl-12 border-l-2 border-[var(--color-border-strong)] space-y-10">
+      {milestones.map((m, i) => (
+        <div class="relative">
+          <div class={`absolute -left-[34px] lg:-left-[50px] top-1 w-6 h-6 rounded-full ${i === milestones.length - 1 ? 'bg-[var(--color-bordo)]' : 'bg-[var(--color-surface-2)]'} border-2 ${i === milestones.length - 1 ? 'border-[var(--color-bordo-hover)]' : 'border-[var(--color-border-strong)]'} flex items-center justify-center`}>
+            <div class={`w-1.5 h-1.5 rounded-full ${i === milestones.length - 1 ? 'bg-[var(--color-peach)]' : 'bg-[var(--color-text-dim)]'}`}></div>
+          </div>
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-2xl font-semibold text-[var(--color-peach)]">{m.year}</span>
+            <h3 class="text-lg font-semibold">{m.title}</h3>
+          </div>
+          <p class="text-[var(--color-text-muted)] leading-relaxed max-w-2xl">{m.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="container-page py-16">
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16">
+      <div>
+        <div class="eyebrow mb-3">Eksport</div>
+        <h2>Działamy także za&nbsp;granicą</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">
+          Nasze maszyny i rozwiązania eksportujemy na rynki europejskie oraz Bliski Wschód.
+          Realizujemy projekty zarówno na rynku krajowym, jak i międzynarodowym - z tymi samymi
+          standardami jakości i wsparcia technicznego.
+        </p>
+      </div>
+      <div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {siteConfig.exportCountries.map((country) => (
+            <div class="card p-4 flex items-center gap-2.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/>
+              </svg>
+              <span class="text-sm text-[var(--color-text)]">{country}</span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-4 text-xs text-[var(--color-text-dim)]">
+          Wybrane rynki współpracy. W sprawie eksportu i dostaw zagranicznych prosimy o kontakt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="card p-8 lg:p-12">
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-10">
+        <div>
+          <div class="eyebrow mb-3">Siedziba</div>
+          <h2 class="text-2xl">Łazy k. Bochni</h2>
+        </div>
+        <div class="prose-dark">
+          <p>
+            Nasz warsztat znajduje się w <strong>Łazach koło Bochni</strong> (woj. małopolskie), około
+            50 km na wschód od Krakowa. Tutaj odbywa się projektowanie CAD, konstrukcja prototypów,
+            produkcja seryjna oraz montaż maszyn. Tu też wracają urządzenia z większymi remontami.
+          </p>
+          <p>
+            Naszą lokalizacja pozwala szybko obsługiwać klientów z <strong>południowej Polski</strong>
+            (Małopolska, Śląsk), ale obsługujemy zamówienia z całego kraju - serwis mobilny dojeżdża
+            do klienta wszędzie, gdzie potrzebny.
+          </p>
+          <p>
+            <strong>{siteConfig.legalName}</strong><br />
+            {siteConfig.address.street}<br />
+            {siteConfig.address.postalCode} {siteConfig.address.locality}<br />
+            <a href={`tel:${siteConfig.phoneClean}`} class="font-mono">{siteConfig.phone}</a> ·
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Poznaj nasz proces produkcji"
+    description="Od projektu CAD przez konstrukcję, produkcję, aż po wdrożenie u klienta. Zobacz jak powstają nasze maszyny."
+  />
+</BaseLayout>

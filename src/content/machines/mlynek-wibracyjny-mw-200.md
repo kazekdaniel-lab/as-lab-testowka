@@ -31,6 +31,8 @@ specs:
     value: "ok. 135 kg"
   - label: "Mielniki / komora"
     value: "Stal hartowana / nierdzewna / węglik wolframu / ceramika"
+image: "mlynek-wibracyjny-mw-200.jpg"
+imageAlt: "Laboratoryjny młynek wibracyjny MW-200 - AS‑LAB"
 gallery: []
 applications:
   - "Katalizatory samochodowe"

@@ -48,7 +48,7 @@ export const megaMenuPreviews: Record<string, {
   'kruszarki-mlynki': {
     title: 'Kruszarki i młynki laboratoryjne',
     description: 'Wstępne rozdrabnianie próbek i głębokie mielenie. Kruszarki szczękowe, walcowe, młotkowe oraz młynki wibracyjne MW-200 do materiałów twardych (do 9 stopni w skali Mohsa).',
-    bullets: ['Kruszarka ZKS-65 mobilna', 'Młynek wibracyjny MW-200', 'Walcowe i młotkowe', 'Model koncepcyjny LKW-240'],
+    bullets: ['Kruszarki szczękowe ZKS-65/100/130/260', 'Kruszarki walcowe LKW-240/280', 'Kruszarki młotkowe KM-300/400', 'Młynki wibracyjne, planetarne, odsiewające'],
     cta: { href: '/kruszarki-i-mlynki-laboratoryjne/', label: 'Zobacz kategorię' },
   },
   'mielenie-katalizatorow': {

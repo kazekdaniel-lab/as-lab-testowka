@@ -33,6 +33,8 @@ specs:
     value: "Hermetyczna, bezpyłowa"
   - label: "Obudowa"
     value: "Dźwiękochłonna"
+image: "mlynek-wibracyjny-mw-200.jpg"
+imageAlt: "Młynek odsiewający MW-200S (na zdjęciu pokrewny model MW-200) - AS‑LAB"
 gallery: []
 applications:
   - "Próbka analityczna 0,2S"

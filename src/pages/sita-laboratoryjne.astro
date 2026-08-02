@@ -3,8 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import { Image } from 'astro:assets';
-import sita from '../assets/products/sita-laboratoryjne.jpeg';
+import MachineCard from '../components/MachineCard.astro';
+import { getCollection } from 'astro:content';
+
+// Wszystkie sita prosto z kolekcji (nie ręcznie - inaczej gubią się modele).
+const sitaMachines = (await getCollection('machines', ({ data }) => !data.draft))
+  .filter((m) => m.data.category === 'sita')
+  .sort((a, b) => a.data.order - b.data.order);
 
 const title = 'Sita laboratoryjne | Sita analityczne i prętowe | AS‑LAB';
 const description = 'AS‑LAB oferuje sita laboratoryjne - analityczne PN-ISO 3310-1:2000, prętowe oraz specjalne sita do zbóż. Producent w Bochni (okolice Tarnowa i Brzeska).';
@@ -28,58 +33,23 @@ const schema = {
     primaryCta={{ href: '/kontakt/', label: 'Dobierz oczka' }}
   />
 
-  <section class="container-page pt-12">
-    <div class="aspect-[21/9] overflow-hidden rounded-lg bg-[var(--color-bg)]">
-      <Image
-        src={sita}
-        alt="Sita laboratoryjne AS‑LAB - produkcja w Bochni"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        class="w-full h-full object-cover"
-      />
+  <section class="container-page py-16 lg:py-20">
+    <div class="prose-dark max-w-3xl mb-10">
+      <p>
+        Sita analityczne to podstawowe narzędzie tam, gdzie liczy się <strong>precyzyjne rozdzielanie
+        cząstek według rozmiaru</strong> - w przemyśle chemicznym, farmaceutycznym, badaniach
+        materiałowych i geologicznych. Pokłady wykonujemy z tkanin z drutu nierdzewnego
+        (PN-ISO 3310-1:2000) lub z nierdzewnych sit perforowanych (PN-ISO 3310-2:2000).
+      </p>
+      <p>
+        Poza sitami analitycznymi produkujemy sita prętowe do klasyfikacji materiałów grubych
+        (kruszywa, węgiel, koks, ruda) oraz specjalne sita do analizy ziaren zbóż. Wymiary,
+        rozstaw prętów i rozmiary oczek ustalamy pod specyfikę materiału.
+      </p>
     </div>
-  </section>
 
-  <section class="container-page py-20">
-    <div class="grid lg:grid-cols-3 gap-12">
-      <article class="card p-6">
-        <span class="badge mb-3">Analityczne</span>
-        <h2 class="text-xl mb-3">Sita analityczne</h2>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-          Okrągłe sita w obręczach nierdzewnych, oczka kwadratowe. Pokłady z tkanin z drutu nierdzewnego
-          (PN-ISO 3310-1:2000) lub nierdzewnych sit perforowanych (PN-ISO 3310-2:2000).
-        </p>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
-          Podstawowe narzędzie w laboratoriach, gdzie ogromne znaczenie ma <strong class="text-[var(--color-text)]">precyzyjne
-          rozdzielanie cząstek według rozmiaru</strong>. Niezastąpione w przemyśle chemicznym,
-          farmaceutycznym, badaniach materiałowych i geologicznych.
-        </p>
-      </article>
-
-      <article class="card p-6">
-        <span class="badge mb-3">Prętowe</span>
-        <h2 class="text-xl mb-3">Sita prętowe</h2>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-          Sita prętowe stosowane do klasyfikacji materiałów grubych - kruszyw, węgla, koksu, rudy.
-          Trwała konstrukcja z prętów stalowych odporna na intensywną eksploatację.
-        </p>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
-          Wymiary i rozstaw prętów ustalany indywidualnie pod specyfikę materiału i wymaganą frakcję
-          rozdziału.
-        </p>
-      </article>
-
-      <article class="card p-6">
-        <span class="badge mb-3">Zbożowe</span>
-        <h2 class="text-xl mb-3">Specjalne sita do zbóż</h2>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-          Sita laboratoryjne dedykowane analizie ziaren zbóż - kontrola jakości, klasyfikacja rozmiaru,
-          ocena czystości materiału siewnego.
-        </p>
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
-          Pokłady dopasowane do PN i wewnętrznych standardów branżowych. Wymiary oczek na zamówienie.
-        </p>
-      </article>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sitaMachines.map((m) => <MachineCard machine={m} />)}
     </div>
   </section>
 

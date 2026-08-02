@@ -22,6 +22,8 @@ specs:
     value: "230 V / 50 Hz"
   - label: "Wymiary maks."
     value: "600 × 500 × 500 mm"
+image: "mlynek-rogi.jpg"
+imageAlt: "Młynek ROGI do oznaczania spiekalności węgla - dwa symetryczne bębny - AS‑LAB"
 gallery: []
 applications:
   - "Spiekalność węgla"

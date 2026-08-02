@@ -26,8 +26,6 @@ specs:
     value: "20 µm - 31,5 mm"
   - label: "Liczba rozmiarów"
     value: "78 standardowych"
-image: "sita-laboratoryjne.jpeg"
-imageAlt: "Sita analityczne 200 mm w obręczach nierdzewnych"
 gallery: []
 applications:
   - "Analizy granulometryczne"

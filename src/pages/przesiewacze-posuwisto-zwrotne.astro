@@ -19,6 +19,13 @@ const schema = {
   brand: { '@id': 'https://as-lab.pl/#organization' },
   category: 'Urządzenia laboratoryjne',
 };
+import MachineCard from '../components/MachineCard.astro';
+import { getCollection } from 'astro:content';
+
+// Modele tej kategorii prosto z kolekcji (nie recznie - inaczej gubia sie maszyny).
+const catMachines = (await getCollection('machines', ({ data }) => !data.draft))
+  .filter((m) => m.data.category === 'przesiewacze')
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout {title} {description} {schema} {breadcrumbs}>
   <Breadcrumbs items={breadcrumbs} />
@@ -88,6 +95,18 @@ const schema = {
           ]}
         />
       </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="mb-8">
+      <h2>Modele w tej kategorii</h2>
+      <p class="mt-3 text-[var(--color-text-muted)] max-w-2xl">
+        Pelna lista urzadzen z tej kategorii - kliknij model, aby zobaczyc parametry techniczne.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {catMachines.map((m) => <MachineCard machine={m} />)}
     </div>
   </section>
 

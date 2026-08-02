@@ -23,8 +23,6 @@ specs:
     value: "20 µm - 31,5 mm"
   - label: "Próbka"
     value: "Większa objętość"
-image: "sita-laboratoryjne.jpeg"
-imageAlt: "Sita analityczne 300 mm"
 gallery: []
 applications:
   - "Analiza większych próbek"

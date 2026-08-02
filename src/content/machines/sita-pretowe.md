@@ -21,6 +21,8 @@ specs:
     value: "Konfigurowalny"
   - label: "Zastosowanie"
     value: "Materiały grube"
+image: "sita-pretowe.jpeg"
+imageAlt: "Sita prętowe w ramie stalowej i drewnianej - AS‑LAB"
 gallery: []
 applications:
   - "Kruszywa"

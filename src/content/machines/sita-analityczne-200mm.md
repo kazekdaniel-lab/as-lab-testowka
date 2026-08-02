@@ -26,6 +26,8 @@ specs:
     value: "20 µm - 31,5 mm"
   - label: "Liczba rozmiarów"
     value: "78 standardowych"
+image: "sita-analityczne-200mm.jpg"
+imageAlt: "Sito analityczne fi 200 mm w obręczy nierdzewnej - pokład perforowany - AS‑LAB"
 gallery: []
 applications:
   - "Analizy granulometryczne"

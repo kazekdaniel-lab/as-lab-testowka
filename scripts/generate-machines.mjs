@@ -495,7 +495,8 @@ const machines = [
       { label: 'Rozmiary oczek', value: '20 µm - 31,5 mm' },
       { label: 'Liczba rozmiarów', value: '78 standardowych' },
     ],
-    // TODO: czekamy na zdjęcie sit analitycznych fi 200 od klienta (do tego czasu placeholder).
+    image: 'sita-analityczne-200mm.jpg',
+    imageAlt: 'Sito analityczne fi 200 mm w obręczy nierdzewnej - pokład perforowany - AS‑LAB',
     applications: ['Analizy granulometryczne', 'Kontrola jakości', 'Klasyfikacja proszków'],
     features: ['78 rozmiarów standardowych', 'PN-ISO 3310 zgodność', 'Obręcze nierdzewne', 'Możliwe rozmiary niestandardowe'],
     keywords: ['sita analityczne', 'sita 200mm', 'PN-ISO 3310', 'sita laboratoryjne'],

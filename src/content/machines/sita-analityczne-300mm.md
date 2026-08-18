@@ -23,6 +23,8 @@ specs:
     value: "20 µm - 31,5 mm"
   - label: "Próbka"
     value: "Większa objętość"
+image: "zestaw-sit-analitycznych.jpg"
+imageAlt: "Sita analityczne fi 300 mm w obreczach nierdzewnych - AS‑LAB"
 gallery: []
 applications:
   - "Analiza większych próbek"

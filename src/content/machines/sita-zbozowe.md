@@ -18,6 +18,8 @@ specs:
     value: "PN + wewnętrzne"
   - label: "Wymiary oczek"
     value: "Na zamówienie"
+image: "zestaw-sit-analitycznych.jpg"
+imageAlt: "Sita laboratoryjne do analizy ziaren zboz - AS‑LAB"
 gallery: []
 applications:
   - "Analiza zbóż"

@@ -90,7 +90,7 @@
 - [Ucierak moździerzowy LUM-200 (LUM-200)](https://as-lab.pl/maszyny/ucierak-mozdzierzowy/): Mechaniczne ucieranie i mieszanie próbek - rozcieranie przez nacisk i tarcie
 - [Stanowisko do sporządzania roztworów](https://as-lab.pl/maszyny/stanowisko-sporzadzania-roztworow/): Stanowisko laboratoryjne ze stali nierdzewnej do przygotowania roztworów
 
-### Nietypowe zamówienia (8)
+### Nietypowe zamówienia (9)
 - [Sondy do pobierania prób](https://as-lab.pl/maszyny/sondy-pobierania-probek/): Indywidualne sondy dopasowane do specyfiki badanego materiału
 - [Cylindry pomiarowe do gęstości nasypowej](https://as-lab.pl/maszyny/cylindry-pomiarowe/): Precyzyjne oznaczanie gęstości nasypowej kruszyw
 - [Podzielnik Jonesa (szczelinowy)](https://as-lab.pl/maszyny/podzielnik-jonesa/): Klasyczny podzielnik szczelinowy do reprezentatywnego podziału próbek
@@ -99,6 +99,7 @@
 - [Kadzie kwasoodporne](https://as-lab.pl/maszyny/kadzie-kwasoodporne/): Pojemniki z materiałów odpornych na działanie kwasów
 - [Regał mosiężny w wykonaniu specjalnym](https://as-lab.pl/maszyny/regal-mosiezny-pirotechnika/): Regał w wykonaniu specjalnym dla branży pirotechnicznej
 - [Szafa do przewożenia spłonek](https://as-lab.pl/maszyny/szafa-do-przewozenia-splonek/): Mobilna szafa ze stali nierdzewnej do bezpiecznego transportu spłonek
+- [Szafa nierdzewna z drzwiami przesuwnymi](https://as-lab.pl/maszyny/szafa-nierdzewna-magazynowa/): Szafa magazynowa ze stali nierdzewnej z przesuwnymi drzwiami i perforowanymi półkami
 
 ## Obszar działania
 

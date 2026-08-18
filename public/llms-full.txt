@@ -26,7 +26,7 @@ Dokument przygotowany dla LLM-ów (ChatGPT, Claude, Perplexity, Gemini i inne). 
 
 ---
 
-## 2. KATALOG MASZYN (44 pozycji)
+## 2. KATALOG MASZYN (45 pozycji)
 
 ### Kruszarki i młynki
 
@@ -765,6 +765,23 @@ Szafa do przewożenia spłonek dla branży pirotechnicznej - mobilna konstrukcja
 **Zastosowania:** Branża pirotechniczna, Transport materiałów inicjujących, Magazynowanie mobilne
 **Cechy:** Stal nierdzewna, Mobilna konstrukcja, Bezpieczny transport, Wykonanie pod klienta
 **Branże:** zbrojeniowka
+
+#### Szafa nierdzewna z drzwiami przesuwnymi
+URL: https://as-lab.pl/maszyny/szafa-nierdzewna-magazynowa/
+
+Szafa magazynowa wykonana ze stali nierdzewnej, zrealizowana na indywidualne zamówienie. Drzwi przesuwne z wziernikami dają dostęp do wnętrza bez zajmowania miejsca przed szafą. Wnętrze podzielone na dwie komory z perforowanymi półkami o regulowanej wysokości, w górnej części króćce przyłączeniowe. Konstrukcja stoi na nóżkach z regulacją poziomu. Wymiary, podział wnętrza i wyposażenie ustalamy pod wymagania klienta.
+
+**Specyfikacja:**
+  - Typ: Szafa magazynowa
+  - Materiał: Stal nierdzewna
+  - Drzwi: Przesuwne, z wziernikami
+  - Półki: Perforowane, regulowana wysokość
+  - Króćce przyłączeniowe: W górnej części
+  - Posadowienie: Nóżki z regulacją poziomu
+  - Wykonanie: Indywidualne
+**Zastosowania:** Magazynowanie wyposażenia, Laboratoria, Pomieszczenia produkcyjne
+**Cechy:** Stal nierdzewna, Drzwi przesuwne, Perforowane półki, Wykonanie pod wymiar
+**Branże:** laboratoria, chemia, zbrojeniowka
 
 
 ---

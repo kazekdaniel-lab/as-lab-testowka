@@ -33,7 +33,7 @@ const breadcrumbs = [
   { name: data.shortName ?? data.name, href: `/maszyny/${machine.id}/` },
 ];
 
-const title = `${data.name}${data.model ? ' ' + data.model : ''} | AS‑LAB`;
+const title = `${data.name}${data.model && !data.name.includes(data.model) ? ' ' + data.model : ''} | AS‑LAB`;
 const description = data.tagline;
 const ogImage = `/og/${machine.id}.jpg`;
 

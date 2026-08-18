@@ -28,8 +28,6 @@ specs:
     value: "ok. 300 kg"
   - label: "Regulacja szczeliny"
     value: "10 stopni (2,0-15,0 mm)"
-image: "kruszarka-szczekowa-zks-130.jpg"
-imageAlt: "Kruszarka szczękowa ZKS-260 - AS‑LAB"
 gallery: []
 applications:
   - "Duże bryły materiału"

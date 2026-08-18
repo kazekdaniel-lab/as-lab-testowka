@@ -28,8 +28,6 @@ specs:
     value: "ok. 750 kg"
   - label: "Materiał walców"
     value: "Stal hartowana"
-image: "kruszarka-walcowa-lkw-240.jpg"
-imageAlt: "Kruszarka walcowa LKW-280 (6-walcowa) - AS‑LAB"
 gallery: []
 applications:
   - "Materiały twarde"

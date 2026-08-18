@@ -30,8 +30,6 @@ specs:
     value: "IP66, wyłącznik awaryjny + krańcowy zasypnika"
   - label: "Regulacja szczeliny"
     value: "10 stopni (2,0-15,0 mm)"
-image: "kruszarka-szczekowa-zks-130.jpg"
-imageAlt: "Kruszarka szczękowa ZKS-130 - AS‑LAB"
 gallery: []
 applications:
   - "Większe bryły materiału"

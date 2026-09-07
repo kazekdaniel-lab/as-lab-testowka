@@ -2,9 +2,14 @@
 interface Props {
   action?: string;
 }
-const { action = '/contact.php' } = Astro.props;
+// FormSubmit (AJAX) - wysylka bez przeladowania strony, bez wlasnego PHP.
+const { action = 'https://formsubmit.co/ajax/aslab.bochnia@gmail.com' } = Astro.props;
 ---
 <form id="contact-form" action={action} method="POST" class="card p-6 lg:p-8 space-y-5" novalidate>
+  <input type="hidden" name="_subject" value="Nowe zapytanie ze strony as-lab.pl" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
   <div class="grid sm:grid-cols-2 gap-5">
     <div>
       <label for="name" class="block text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim)] mb-2">
@@ -90,8 +95,13 @@ const { action = '/contact.php' } = Astro.props;
       try {
         const data = new FormData(form);
         if (data.get('_honeypot')) return;
-        const res = await fetch(form.action, { method: 'POST', body: data });
-        if (res.ok) {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        const out = await res.json().catch(() => null);
+        if (res.ok && (!out || out.success !== 'false')) {
           status.textContent = '✓ Dziękujemy, odezwiemy się wkrótce.';
           status.style.color = 'var(--color-cyan)';
           form.reset();

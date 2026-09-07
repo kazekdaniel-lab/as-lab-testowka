@@ -27,3 +27,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# dane dostepowe SMTP - tylko na serwerze
+smtp-config.php
+public/smtp-config.php

@@ -150,7 +150,7 @@ ErrorDocument 500 /404.html
   Deny from all
 </FilesMatch>
 
-<FilesMatch "(README\.md|package(-lock)?\.json|astro\.config\.mjs|tsconfig\.json|env\.example)$">
+<FilesMatch "(README\.md|package(-lock)?\.json|astro\.config\.mjs|tsconfig\.json|env\.example|smtp-config\.php)$">
   Order allow,deny
   Deny from all
 </FilesMatch>

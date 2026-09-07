@@ -7,6 +7,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # .well-known musi dzialac bez zadnych przepisan
+  # (walidacja i odnawianie certyfikatu SSL Let's Encrypt)
+  RewriteRule ^\.well-known/ - [L]
+
   # Force HTTPS
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
@@ -43,6 +47,12 @@
   RewriteRule ^regiony(/.*)?$ /serwis-maszyn/ [R=301,L]
 
 </IfModule>
+
+# ============================================================
+# Strona startowa - index.html ma pierwszenstwo przed index.php
+# (zabezpieczenie, gdyby po WordPressie zostal jakis index.php)
+# ============================================================
+DirectoryIndex index.html index.htm
 
 # ============================================================
 # Custom error pages

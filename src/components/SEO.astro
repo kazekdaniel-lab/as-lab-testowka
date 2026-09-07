@@ -83,16 +83,14 @@ const localBusinessSchema = {
     longitude: siteConfig.geo.longitude,
   },
   hasMap: `https://www.google.com/maps/search/?api=1&query=${siteConfig.geo.latitude},${siteConfig.geo.longitude}`,
+  // areaServed: kraj + wojewodztwa. BEZ list miast - wczesniej bylo 79 obiektow City
+  // na KAZDEJ stronie (12 KB JSON-LD, 11% wagi HTML) i ocieralo sie o keyword stuffing.
   areaServed: [
     { '@type': 'Country', name: 'Polska' },
     ...regions.map((r) => ({
       '@type': 'AdministrativeArea',
       name: r.longName,
       identifier: r.isoCode,
-      containsPlace: r.cities.slice(0, 8).map((city) => ({
-        '@type': 'City',
-        name: city,
-      })),
     })),
   ],
   serviceArea: {

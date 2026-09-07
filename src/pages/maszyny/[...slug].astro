@@ -34,7 +34,26 @@ const breadcrumbs = [
 ];
 
 const title = `${data.name}${data.model && !data.name.includes(data.model) ? ' ' + data.model : ''} | AS‑LAB`;
-const description = data.tagline;
+// Meta description: tagline bywa krotki (<110 zn.) - dopelniamy kontekstem.
+// Budujemy kandydatow od najbogatszego i bierzemy najdluzszego, ktory miesci sie
+// w limicie Google (~160 zn.) - dzieki temu opis nigdy nie urywa sie w polowie zdania.
+function buildDescription() {
+  const base = data.tagline.trim().replace(/\s+$/, '');
+  const withDot = base.endsWith('.') ? base : base + '.';
+  const apps = data.applications || [];
+  const brand = 'Producent AS\u2011LAB';
+  const candidates = [
+    apps.length >= 3 ? `${withDot} Zastosowania: ${apps.slice(0, 3).join(', ')}. ${brand} - wycena w 24h.` : null,
+    apps.length >= 2 ? `${withDot} Zastosowania: ${apps.slice(0, 2).join(', ')}. ${brand} - wycena w 24h.` : null,
+    apps.length >= 1 ? `${withDot} Zastosowania: ${apps[0]}. ${brand} - wycena w 24h.` : null,
+    `${withDot} ${brand} maszyn laboratoryjnych i przemyslowych - wycena w 24h.`,
+    `${withDot} ${brand}.`,
+    base,
+  ].filter(Boolean);
+  const fit = candidates.find((c) => c.length <= 160);
+  return fit ?? base.slice(0, 157).trimEnd() + '...';
+}
+const description = buildDescription();
 const ogImage = `/og/${machine.id}.jpg`;
 
 // Dynamic image

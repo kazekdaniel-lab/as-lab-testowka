@@ -16,6 +16,19 @@
   RewriteCond %{HTTP_HOST} ^www\.as-lab\.pl$ [NC]
   RewriteRule ^(.*)$ https://as-lab.pl/$1 [R=301,L]
 
+  # ===== Stare URL z WordPressa (zachowanie mocy SEO) =====
+  # Stara karta produktu KW-240 → nowa strona maszyny LKW-240
+  RewriteRule ^laboratoryjna-kruszarka-4-walcowa-typ-kw-240/?$ /maszyny/kruszarka-walcowa-lkw-240/ [R=301,L]
+  # Stary wpis blogowy (byl w roocie) → nowa struktura /blog/
+  RewriteRule ^wplyw-precyzyjnego-mielenia-na-jakosc-wynikow-analitycznych/?$ /blog/wplyw-precyzyjnego-mielenia-na-jakosc-wynikow-analitycznych/ [R=301,L]
+  # Duplikat strony serwisu (ta sama tresc co /serwis-maszyn/)
+  RewriteRule ^serwis-maszyn-gorniczych/?$ /serwis-maszyn/ [R=301,L]
+  # Archiwum kategorii WP
+  RewriteRule ^category/bez-kategorii/?$ /blog/ [R=301,L]
+  RewriteRule ^category(/.*)?$ /blog/ [R=301,L]
+  # Techniczne szablony Elementora
+  RewriteRule ^elementor-hf(/.*)?$ / [R=301,L]
+
   # Trailing slash dla katalogów (Astro generuje z trailing slash)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -28,6 +41,7 @@
 
   # Wycofana sekcja /regiony/ → serwis (obszar dostaw)
   RewriteRule ^regiony(/.*)?$ /serwis-maszyn/ [R=301,L]
+
 </IfModule>
 
 # ============================================================
